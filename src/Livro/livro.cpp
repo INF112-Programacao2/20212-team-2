@@ -40,3 +40,12 @@ void livro::set_registro(string registro) {
 void livro::set_disponivel(bool disponivel) {
     this->disponivel = disponivel;
 }
+
+string livro::to_string() {
+    string status = is_disponivel() ? "Sim" : "Nao";
+    return "Nome: " + get_nome() + "\n" +
+            "Autor: " + get_autor() + "\n" +
+            "Genero: " + get_genero() + "\n" +
+            "Registro: " + get_registro() + "\n" +
+            "Esta disponivel? " + status;
+}

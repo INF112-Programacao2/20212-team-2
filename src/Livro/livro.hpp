@@ -27,8 +27,8 @@ class livro {
         void set_registro(string);
         void set_disponivel(bool);
 
-
-
+        // TO_STRING
+        string to_string();
 };
 
 #endif // LIVRO_HEADER
