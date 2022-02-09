@@ -15,9 +15,9 @@
 5. Como bibliotecário, eu quero poder ver a lista de usuários e livros atrasados
 6. Como bibliotecário, eu quero poder editar livros já cadastrados
 
-### Classes
+### Classes (Definição)
 - [ ] Biblioteca
-- [ ] Livro
-- [ ] Usuários
+- [x] Livro
+- [x] Usuário
 - [ ] Transações
 - [ ] Histórico de Transações
