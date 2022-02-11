@@ -1,5 +1,5 @@
-#include "Usuarios/usuario.hpp"
-#include "Biblioteca/biblioteca.hpp"
+#include "DataModels/Usuarios/usuario.hpp"
+#include "DataModels/Biblioteca/biblioteca.hpp"
 
 #include <iostream>
 using namespace std;
@@ -9,11 +9,11 @@ using namespace std;
 usuario *cria_usuario();
 livro *cria_livro();
 
-
-int main() {
+int main()
+{
 
     biblioteca lib;
-    
+
     lib.registrar_usuario(*cria_usuario());
     lib.listar_usuarios_cadastrados();
 
@@ -22,10 +22,10 @@ int main() {
     lib.listar_livros_por_genero("Aventura");
 
     return 0;
-
 }
 
-usuario *cria_usuario() {
+usuario *cria_usuario()
+{
     usuario *u = new usuario;
 
     char nome[CHAR_MAX];
@@ -34,7 +34,7 @@ usuario *cria_usuario() {
 
     cout << "Insira o nome do usuario: ";
     cin.getline(nome, CHAR_MAX);
-    
+
     cout << "Insira o celular do usuario: ";
     cin.getline(celular, CHAR_MAX);
 
@@ -49,7 +49,8 @@ usuario *cria_usuario() {
     return u;
 }
 
-livro *cria_livro() {
+livro *cria_livro()
+{
     livro *l = new livro;
 
     char nome[CHAR_MAX];
@@ -62,7 +63,7 @@ livro *cria_livro() {
 
     cout << "Insira o(s) autor(es) do livro: ";
     cin.getline(autor, CHAR_MAX);
-    
+
     cout << "Insira o genero do livro: ";
     cin.getline(genero, CHAR_MAX);
 
