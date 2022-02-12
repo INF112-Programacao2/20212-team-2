@@ -1,5 +1,6 @@
 #include "biblioteca.hpp"
-
+#include <map>
+#include <vector>
 #include <iterator>
 using namespace std;
 
@@ -21,18 +22,18 @@ void Biblioteca::listar_usuarios_cadastrados()
     }
 }
 
-bool Biblioteca::registrar_livro(Livro book)
+bool Biblioteca::registrar_livro(DataModelLivro book)
 {
     if (livros.find(book.get_genero()) == livros.end())
     {
-        vector<Livro> v;
+        vector<DataModelLivro> v;
         v.push_back(book);
         livros.insert({book.get_genero(), v});
         return true;
     }
 
-    vector<Livro> &v = livros[book.get_genero()];
-    for (Livro l : v)
+    vector<DataModelLivro> &v = livros[book.get_genero()];
+    for (DataModelLivro l : v)
     {
         if (book.get_registro() == l.get_registro())
         {
@@ -60,8 +61,8 @@ void Biblioteca::listar_livros_cadastrados()
 
 void Biblioteca::listar_livros_por_genero(string genero)
 {
-    vector<Livro> &v = livros[genero];
-    for (Livro l : v)
+    vector<DataModelLivro> &v = livros[genero];
+    for (DataModelLivro l : v)
     {
         cout << l.to_string() << "\n"
              << endl;

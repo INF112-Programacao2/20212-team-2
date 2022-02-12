@@ -1,5 +1,5 @@
 #include "../Usuarios/usuario.hpp"
-#include "../Livro/livro.hpp"
+#include "../Livro/DataModel/livro.hpp"
 
 #include <iostream>
 #include <map>
@@ -14,14 +14,14 @@ class Biblioteca
 private:
     // ATRIBUTOS
     map<string, Usuario> usuarios;
-    map<string, vector<Livro>> livros;
+    map<string, vector<DataModelLivro>> livros;
 
 public:
     // MÉTODOS ESPECÍFICOS
     bool registrar_usuario(Usuario);
     void listar_usuarios_cadastrados();
 
-    bool registrar_livro(Livro);
+    bool registrar_livro(DataModelLivro);
     void listar_livros_cadastrados();
     void listar_livros_por_genero(string);
 

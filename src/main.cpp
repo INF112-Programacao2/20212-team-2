@@ -1,18 +1,23 @@
-#include "DataModels/Usuarios/usuario.hpp"
-#include "DataModels/Biblioteca/biblioteca.hpp"
-
+#include "daos/Usuarios/usuario.cpp"
+#include "daos/Biblioteca/biblioteca.cpp"
+#include "daos/Livro/daoLivro.cpp"
 #include <iostream>
 using namespace std;
 
 #define CHAR_MAX 200
 
-usuario *cria_usuario();
-livro *cria_livro();
+Usuario *cria_usuario();
+DataModelLivro *cria_livro();
 
 int main()
 {
 
-    biblioteca lib;
+    DataModelLivro livro = *cria_livro();
+
+    DaoLivro daoLivro;
+    daoLivro.saveDataModel(livro);
+    /*
+    Biblioteca lib;
 
     lib.registrar_usuario(*cria_usuario());
     lib.listar_usuarios_cadastrados();
@@ -21,12 +26,12 @@ int main()
     lib.listar_livros_cadastrados();
     lib.listar_livros_por_genero("Aventura");
 
-    return 0;
+    return 0;*/
 }
 
-usuario *cria_usuario()
+Usuario *cria_usuario()
 {
-    usuario *u = new usuario;
+    Usuario *u = new Usuario;
 
     char nome[CHAR_MAX];
     char celular[CHAR_MAX];
@@ -49,9 +54,9 @@ usuario *cria_usuario()
     return u;
 }
 
-livro *cria_livro()
+DataModelLivro *cria_livro()
 {
-    livro *l = new livro;
+    DataModelLivro *l = new DataModelLivro("teste", "autor", "genero", "registro", true);
 
     char nome[CHAR_MAX];
     char autor[CHAR_MAX];
