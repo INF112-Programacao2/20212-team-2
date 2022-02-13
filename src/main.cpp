@@ -15,18 +15,20 @@ int main()
     DataModelLivro livro = *cria_livro();
 
     DaoLivro daoLivro;
+
     daoLivro.saveDataModel(livro);
-    /*
+    daoLivro.getDataModels();
+
     Biblioteca lib;
 
-    lib.registrar_usuario(*cria_usuario());
+    /*lib.registrar_usuario(*cria_usuario());
     lib.listar_usuarios_cadastrados();
 
     lib.registrar_livro(*cria_livro());
     lib.listar_livros_cadastrados();
-    lib.listar_livros_por_genero("Aventura");
+    lib.listar_livros_por_genero("Aventura");*/
 
-    return 0;*/
+    return 0;
 }
 
 Usuario *cria_usuario()
