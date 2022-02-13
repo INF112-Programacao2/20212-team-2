@@ -29,6 +29,7 @@ public:
     void set_genero(std::string);
     void set_registro(std::string);
     void set_disponivel(bool);
+    void set_atributo(std::string atributo, std::string value);
 
     // TO_STRING
     std::string to_string();

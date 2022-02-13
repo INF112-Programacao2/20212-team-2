@@ -10,7 +10,44 @@ DataModelLivro::DataModelLivro(string nome, std::string autor, std::string gener
     disponivel = disponivel;
 }
 
-std::string DataModelLivro::get_nome()
+void DataModelLivro::set_atributo(string atributo, string value)
+{
+
+    if (atributo == "nome")
+    {
+        set_nome(value);
+    }
+
+    if (atributo == "autor")
+    {
+        set_autor(value);
+    }
+
+    if (atributo == "genero")
+    {
+        set_genero(value);
+    }
+
+    if (atributo == "registro")
+    {
+        set_registro(value);
+    }
+
+    if (atributo == "disponivel")
+    {
+        if (value == "1")
+        {
+            set_disponivel(true);
+        }
+        else
+        {
+            set_disponivel(false);
+        }
+    }
+}
+
+std::string
+DataModelLivro::get_nome()
 {
     return this->nome;
 }
