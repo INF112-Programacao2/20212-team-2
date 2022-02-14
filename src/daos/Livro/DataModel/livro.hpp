@@ -1,9 +1,9 @@
 #include <iostream>
-
+#include "../../../framework/dataModelBase.hpp"
 #ifndef DATAMODELLIVRO_HEADER
 #define DATAMODELLIVRO_HEADER
 
-class DataModelLivro
+class DataModelLivro : DataModelBase
 {
 private:
     // ATRIBUTOS

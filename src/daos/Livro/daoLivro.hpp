@@ -3,11 +3,13 @@
 #include <map>
 #include <vector>
 
+#include "../../framework/daoBase.hpp"
+
 using namespace std;
 #ifndef DAOLIVRO_HEADER
 #define DAOLIVRO_HEADER
 
-class DaoLivro
+class DaoLivro : DaoBase<DataModelLivro>
 {
 public:
     // MÉTODOS DE ACESSO
