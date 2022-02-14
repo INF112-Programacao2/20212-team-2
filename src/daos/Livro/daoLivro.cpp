@@ -1,4 +1,3 @@
-#include "DataModel/livro.hpp"
 #include "daoLivro.hpp"
 #include <iostream>
 #include <map>
@@ -25,7 +24,6 @@ map<std::string, vector<DataModelLivro>> DaoLivro::getDataModels()
 {
     //implementar busca do banco de dados
     map<string, vector<DataModelLivro>> livros;
-    vector<DataModelLivro> v;
 
     DIR *dir;
     struct dirent *lsdir;
@@ -35,24 +33,49 @@ map<std::string, vector<DataModelLivro>> DaoLivro::getDataModels()
     /* print all the files and directories within directory */
     while ((lsdir = readdir(dir)) != NULL && lsdir->d_name != "." && lsdir->d_name != "..")
     {
-        printf("%s\n", lsdir->d_name);
+        //printf("%s\n", lsdir->d_name);
         DataModelLivro livroTemp("", "", "", "", false);
-
+        vector<DataModelLivro> v;
         livroTemp = this->getDataModelById(lsdir->d_name);
 
-        v.push_back(livroTemp);
-        livros.insert({livroTemp.get_genero(), v});
+        if (livroTemp.get_genero() != "")
+        {
+            v = this->getLivrosDeMesmoGenero(livroTemp.get_genero());
+
+            livros.insert({livroTemp.get_genero(), v});
+        }
     }
 
     closedir(dir);
 
     return livros;
 }
+vector<DataModelLivro> DaoLivro::getLivrosDeMesmoGenero(std::string genero)
+{
+    vector<DataModelLivro> vetorDelivrosDoMesmoGenero;
+    DIR *dir;
+    struct dirent *lsdir;
+
+    dir = opendir("../bancoLocalDeDados/Livros");
+
+    /* print all the files and directories within directory */
+    while ((lsdir = readdir(dir)) != NULL && lsdir->d_name != "." && lsdir->d_name != "..")
+    {
+        DataModelLivro livroTemp("", "", "", "", false);
+        livroTemp = this->getDataModelById(lsdir->d_name);
+
+        if (livroTemp.get_genero() == genero)
+        {
+            vetorDelivrosDoMesmoGenero.push_back(livroTemp);
+        }
+    }
+    return vetorDelivrosDoMesmoGenero;
+}
 DataModelLivro DaoLivro::getDataModelById(std::string registro)
 {
 
     //implementar busca por id do banco de dados
-    DataModelLivro livro = DataModelLivro("asdf", "asdf", "asdf", "asdf", true);
+    DataModelLivro livro = DataModelLivro("", "", "", "", false);
 
     FILE *arq;
     char Linha[100];
@@ -71,12 +94,13 @@ DataModelLivro DaoLivro::getDataModelById(std::string registro)
         while (!arq_in.eof())
         {
             getline(arq_in, linha);
-            // cout << linha << endl;
+            //cout << linha << endl;
 
             if (linha != "{" && linha != "}" && linha.find(" ") > 0 && linha.find(" ") < linha.length())
             {
                 std::string value = linha.substr(linha.find(" "), linha.length() - 1);
                 std::string atributo = linha.substr(0, linha.find(":"));
+
                 livro.set_atributo(atributo, value);
             }
         }
@@ -84,12 +108,12 @@ DataModelLivro DaoLivro::getDataModelById(std::string registro)
     }
     else
     {
-        cout << "ERRO: arquivo não foi aberto ou não existe" << endl;
-    }
 
+        //cout << "ERRO: arquivo não foi aberto ou não existe" << endl;
+    }
     return livro;
 }
-void DaoLivro::saveDataModel(DataModelLivro newLivro)
+bool DaoLivro::saveDataModel(DataModelLivro newLivro)
 {
     //criação de arquivo
     struct stat st = {0};
@@ -106,6 +130,7 @@ void DaoLivro::saveDataModel(DataModelLivro newLivro)
         {
             printf("Error creating directory!n");
             exit(1);
+            return false;
         }
         else
         {
@@ -117,27 +142,38 @@ void DaoLivro::saveDataModel(DataModelLivro newLivro)
 
     string text("{  \n");
     //construindo o texto que sera salvo
-    text = text + "nome: " + newLivro.get_nome() + "\n";
-    text = text + "autor: " + newLivro.get_autor() + "\n";
-    text = text + "genero: " + newLivro.get_genero() + "\n";
-    text = text + "registro: " + newLivro.get_registro() + "\n";
-    text = text + "disponivel: " + to_string(newLivro.is_disponivel()) + "\n";
+    text = text + newLivro.to_string();
     text = text + "} \n";
     string filenameFinal(filename + "/output.txt");
     fstream outfile;
+
+    const char *filenameFinal2 = filenameFinal.c_str();
+
+    this->apagarDadosDoArquivo(filenameFinal2);
 
     outfile.open(filenameFinal, std::ios_base::app);
     if (!outfile.is_open())
     {
         cerr << "failed to open " << filenameFinal << '\n';
+        return false;
     }
     else
     {
         outfile.write(text.data(), text.size());
         cerr << "Done Writing!" << endl;
+        return true;
     }
 }
 
-void DaoLivro::deleteDataModel(DataModelLivro livroDeletado)
+bool DaoLivro::apagarDadosDoArquivo(const char *path)
 {
+    FILE *arquivo;
+    arquivo = fopen(path, "w");
+    fclose(arquivo);
+    return true;
+}
+
+bool DaoLivro::deleteDataModel(DataModelLivro livroDeletado)
+{
+    return true;
 }

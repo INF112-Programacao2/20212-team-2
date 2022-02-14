@@ -1,6 +1,5 @@
-#include "daos/Usuarios/usuario.cpp"
-#include "daos/Biblioteca/biblioteca.cpp"
-#include "daos/Livro/daoLivro.cpp"
+#include "./daos/Usuarios/usuario.cpp"
+#include "./features/biblioteca/biblioteca.cpp"
 #include <iostream>
 using namespace std;
 
@@ -12,14 +11,14 @@ DataModelLivro *cria_livro();
 int main()
 {
 
-    DataModelLivro livro = *cria_livro();
-
-    DaoLivro daoLivro;
-
-    daoLivro.saveDataModel(livro);
-    daoLivro.getDataModels();
-
     Biblioteca lib;
+
+    //DataModelLivro livro = *cria_livro();
+
+    //lib.registrar_livro(livro);
+    lib.popular_livros_com_banco_de_dados();
+    //lib.listar_livros_cadastrados();
+    lib.listar_livros_por_genero(" Aventura");
 
     /*lib.registrar_usuario(*cria_usuario());
     lib.listar_usuarios_cadastrados();

@@ -9,6 +9,9 @@
         "istream": "cpp",
         "stdexcept": "cpp",
         "system_error": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "iosfwd": "cpp",
+        "array": "cpp",
+        "ranges": "cpp"
     }
 }

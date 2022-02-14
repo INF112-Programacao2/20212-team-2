@@ -14,9 +14,11 @@ public:
     DaoLivro();
     map<std::string, vector<DataModelLivro>> getDataModels();
     DataModelLivro getDataModelById(std::string registro);
+    vector<DataModelLivro> getLivrosDeMesmoGenero(std::string genero);
     // MÉTODOS DE MODIFICAÇÃO
-    void saveDataModel(DataModelLivro newLivro);
-    void deleteDataModel(DataModelLivro livroDeletado);
+    bool saveDataModel(DataModelLivro newLivro);
+    bool deleteDataModel(DataModelLivro livroDeletado);
+    bool apagarDadosDoArquivo(const char *path);
 };
 
 #endif // DAOLIVRO_HEADER

@@ -1,6 +1,5 @@
-#include "../Usuarios/usuario.hpp"
-#include "../Livro/DataModel/livro.hpp"
-
+#include "../../daos/Usuarios/usuario.hpp"
+#include "../../daos/Livro/DataModel/livro.hpp"
 #include <iostream>
 #include <map>
 #include <vector>
@@ -24,6 +23,7 @@ public:
     bool registrar_livro(DataModelLivro);
     void listar_livros_cadastrados();
     void listar_livros_por_genero(string);
+    void popular_livros_com_banco_de_dados();
 
     // MÉTODOS DE ACESSO
     map<string, Usuario> get_usuarios();

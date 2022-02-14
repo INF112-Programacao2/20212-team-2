@@ -1,4 +1,6 @@
 #include "biblioteca.hpp"
+#include "../../daos/Livro/daoLivro.cpp"
+
 #include <map>
 #include <vector>
 #include <iterator>
@@ -24,29 +26,15 @@ void Biblioteca::listar_usuarios_cadastrados()
 
 bool Biblioteca::registrar_livro(DataModelLivro book)
 {
-    if (livros.find(book.get_genero()) == livros.end())
-    {
-        vector<DataModelLivro> v;
-        v.push_back(book);
-        livros.insert({book.get_genero(), v});
-        return true;
-    }
+    DaoLivro daoLivro;
 
-    vector<DataModelLivro> &v = livros[book.get_genero()];
-    for (DataModelLivro l : v)
-    {
-        if (book.get_registro() == l.get_registro())
-        {
-            return false;
-        }
-    }
-
-    v.push_back(book);
-    return true;
+    return daoLivro.saveDataModel(book);
 }
 
 void Biblioteca::listar_livros_cadastrados()
 {
+
+    cout << endl;
     for (auto const &lista : livros)
     {
         cout << "Genero: " << lista.first << "\n"
@@ -61,12 +49,19 @@ void Biblioteca::listar_livros_cadastrados()
 
 void Biblioteca::listar_livros_por_genero(string genero)
 {
+
     vector<DataModelLivro> &v = livros[genero];
     for (DataModelLivro l : v)
     {
         cout << l.to_string() << "\n"
              << endl;
     }
+}
+
+void Biblioteca::popular_livros_com_banco_de_dados()
+{
+    DaoLivro livro;
+    livros = livro.getDataModels();
 }
 
 map<string, Usuario> Biblioteca::get_usuarios()

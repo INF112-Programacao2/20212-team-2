@@ -13,29 +13,30 @@ DataModelLivro::DataModelLivro(string nome, std::string autor, std::string gener
 void DataModelLivro::set_atributo(string atributo, string value)
 {
 
-    if (atributo == "nome")
+    if (atributo == "Nome")
     {
+
         set_nome(value);
     }
 
-    if (atributo == "autor")
+    if (atributo == "Autor")
     {
         set_autor(value);
     }
 
-    if (atributo == "genero")
+    if (atributo == "Genero")
     {
         set_genero(value);
     }
 
-    if (atributo == "registro")
+    if (atributo == "Registro")
     {
         set_registro(value);
     }
 
-    if (atributo == "disponivel")
+    if (atributo == "Disponivel")
     {
-        if (value == "1")
+        if (value == " Sim")
         {
             set_disponivel(true);
         }
@@ -44,6 +45,16 @@ void DataModelLivro::set_atributo(string atributo, string value)
             set_disponivel(false);
         }
     }
+}
+
+std::string DataModelLivro::to_string()
+{
+    std::string status = is_disponivel() ? "Sim" : "Nao";
+    return "Nome: " + get_nome() + "\n" +
+           "Autor: " + get_autor() + "\n" +
+           "Genero: " + get_genero() + "\n" +
+           "Registro: " + get_registro() + "\n" +
+           "Disponivel: " + status + "\n";
 }
 
 std::string
@@ -95,14 +106,4 @@ void DataModelLivro::set_registro(std::string registro)
 void DataModelLivro::set_disponivel(bool disponivel)
 {
     this->disponivel = disponivel;
-}
-
-std::string DataModelLivro::to_string()
-{
-    std::string status = is_disponivel() ? "Sim" : "Nao";
-    return "Nome: " + get_nome() + "\n" +
-           "Autor: " + get_autor() + "\n" +
-           "Genero: " + get_genero() + "\n" +
-           "Registro: " + get_registro() + "\n" +
-           "Esta disponivel? " + status;
 }
