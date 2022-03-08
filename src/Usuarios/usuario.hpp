@@ -5,7 +5,7 @@ using namespace std;
 #define USUARIO_HEADER
 
 class usuario {
-    private:
+    protected:
         // ATRIBUTOS
         string nome;
         string celular;

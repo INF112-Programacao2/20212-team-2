@@ -1,5 +1,6 @@
 #include "Usuarios/usuario.hpp"
 #include "Biblioteca/biblioteca.hpp"
+#include "Transacao/transacao.hpp"
 
 #include <iostream>
 using namespace std;
@@ -13,13 +14,19 @@ livro *cria_livro();
 int main() {
 
     biblioteca lib;
+    Transacao tra;
     
     lib.registrar_usuario(*cria_usuario());
     lib.listar_usuarios_cadastrados();
+    
+    tra.realizarEmprestimo(*cria_usuario(), *cria_livro());
+    cin.ignore();
 
     lib.registrar_livro(*cria_livro());
     lib.listar_livros_cadastrados();
     lib.listar_livros_por_genero("Aventura");
+
+    tra.devolucaoEmprestimo();
 
     return 0;
 
