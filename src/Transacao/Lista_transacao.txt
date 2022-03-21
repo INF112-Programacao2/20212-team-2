@@ -1,0 +1,4 @@
+Data Emprestimo 21/3/2022 | Codigo Livro 333 | Codigo User 105450 | Data Devolucao 21/3/2022
+Data Emprestimo 21/3/2022 | Codigo Livro 222 | Codigo User 103213 | Data Devolucao 21/3/2022
+Data Emprestimo 21/3/2022 | Codigo Livro 333 | Codigo User 105450 | Data Devolucao 21/3/2022
+Data Emprestimo 21/3/2022 | Codigo Livro 222 | Codigo User 103213 | Data Devolucao 21/3/2022

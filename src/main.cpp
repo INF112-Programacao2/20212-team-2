@@ -17,16 +17,21 @@ int main() {
     Transacao tra;
     
     lib.registrar_usuario(*cria_usuario());
-    lib.listar_usuarios_cadastrados();
+    lib.registrar_livro(*cria_livro());
+
     
-    tra.realizarEmprestimo(*cria_usuario(), *cria_livro());
+    tra.realizarEmprestimo("333", "105450");
+    tra.devolucaoEmprestimo();
+    tra.realizarEmprestimo("222", "103213");
+    tra.devolucaoEmprestimo();
+
     cin.ignore();
 
-    lib.registrar_livro(*cria_livro());
+    
     lib.listar_livros_cadastrados();
-    lib.listar_livros_por_genero("Aventura");
-
-    tra.devolucaoEmprestimo();
+    lib.listar_usuarios_cadastrados();
+    //lib.listar_livros_por_genero("Aventura");
+    tra.listarHistorico();
 
     return 0;
 

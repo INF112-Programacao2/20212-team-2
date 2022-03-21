@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 #ifndef TRANSACOES_HPP
 #define TRANSACOES_HPP
@@ -14,9 +15,9 @@ class Transacao {
         long long int _dataEmprestimo; // Data momento do emprestimo
         long long int _dataRetorno; // Data retorno do emprestimo
         long long int _dataVencimento; // Prazo maximo para retorno do emprestimo sem multa
-        string _codigoTransacao;
-        livro *_l;
-        usuario *_u;
+
+        string _codigoLivro;
+        string _codigoUser;
 
         // METODOS PRIVADOS
         long long int getData();
@@ -24,13 +25,14 @@ class Transacao {
 
     public:
         // METODOS
-        void realizarEmprestimo(usuario&, livro&);
+        void realizarEmprestimo(string codigo_livro, string codigo_user);
         void listarHistorico();
         void devolucaoEmprestimo();
         double calculaMulta();
 
         void setCodigoTransacao(string);
         string getCodigo();
+        
 
         
 };
