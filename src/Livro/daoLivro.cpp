@@ -109,7 +109,7 @@ DataModelLivro DaoLivro::getDataModelById(std::string registro)
     else
     {
 
-        //cout << "ERRO: arquivo não foi aberto ou não existe" << endl;
+        std::cerr << "ERRO: arquivo não foi aberto ou não existe" << std::endl;
     }
     return livro;
 }

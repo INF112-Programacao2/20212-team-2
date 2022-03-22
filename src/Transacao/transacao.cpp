@@ -22,41 +22,93 @@ double Transacao::calculaMulta(){
     return multa;
 }
 
-void Transacao::realizarEmprestimo(std::string codigo_livro, string codigo_user){
+void Transacao::realizarEmprestimo(){
+
     _dataEmprestimo =  getData(); // Pega a data do sistema
-    _codigoLivro = codigo_livro;
-    _codigoUser = codigo_user;
- 
 
-
-
+    // Salva os codigos do livro e usuario
+    std::cout<<"Digite o codigo do livro que será emprestado: ";
+    std::cin >> _codigoLivro;
+    std::cout << "Digite o codigo do usuario a quem será emprestado: ";
+    std::cin >> _codigoUser;
+    DataModelLivro p = _livros.getDataModelById(_codigoLivro);
+    
+    // Verifica se o livro está disponivel
+    if(!(p.is_disponivel())){
+        std::cout<< "O livro nao esta disponivel no momento.\n";
+        return;
+    }
+    
+    // Prazo para devolucao
     int prazo; 
     std::cout << "Qual o prazo (em dias) para a devolucao do livro? ";
     std::cin >> prazo;
 
+    // Calcula a data de Vencimento
     _dataVencimento = _dataEmprestimo+(prazo*60*60); // Transforma o prazo em segundos e soma ao valor a data de emprestimo (em segundos)
-    //l.set_disponivel(false); // Atualiza disponibilidade
-    std::cout << "Emprestimo realizado! Do livro " << _codigoLivro << " para o usuario " << codigo_user << "." << std::endl;
 
+    // Atualiza disponibilidade e informa que o emprestimo foi realizado
+    //_livros.modificarDisponibilidadeById(_codigoLivro); 
+    std::cout << "Emprestimo realizado! Do livro " << p.get_nome() << " para o usuario " << _codigoUser << "." << std::endl;
+
+
+    salvaEmprestimo();
+}
+
+void Transacao::devolucaoEmprestimo(){
+   _dataRetorno = getData();
+
+   // Salva os codigos do livro e usuario
+    std::cout<<"Digite o codigo do livro que sera devolvido: ";
+    std::cin >> _codigoLivro;
+    std::cout << "Digite o codigo do usuario que devolveu: ";
+    std::cin >> _codigoUser;
+    DataModelLivro p = _livros.getDataModelById(_codigoLivro);
+
+   if(_dataRetorno>_dataVencimento){
+       std::cout << "Emprestimo atrasado! Favor pagar a quantia de " << calculaMulta() << " reais. " << std::endl;
+   }
+
+    // Atualiza disponibilidade
+    //_livros.modificarDisponibilidadeById(_codigoLivro);
+
+    std::cout << "Devolucao realizada. " << std::endl;
+
+    // Escrever no arquivo
+    salvaDevolucao();
+}
+
+void Transacao::listarHistorico(){
+    std::ifstream leitura("Transacao/Lista_transacao.txt");
+    std::string linha;
+
+    if(leitura.is_open()){
+        while(!leitura.eof()){
+            getline(leitura,linha);
+            std::cout << linha << std::endl;
+        }
+    }
+    else
+        std::cerr << "ERRO: arquivo não foi aberto ou não existe\n";
+    leitura.close();
+}
+
+Transacao::Transacao(DaoLivro &livros){
+    _livros = livros;
+}
+
+void Transacao::salvaEmprestimo(){
     time_t mytime;
     mytime = time(NULL);
     struct tm tm = *localtime(&mytime);
     transacoes <<"Data Emprestimo " <<  tm.tm_mday <<"/" <<tm.tm_mon + 1 <<"/" << tm.tm_year + 1900 << " | ";
     transacoes <<"Codigo Livro " << _codigoLivro << " | ";
-    transacoes <<"Codigo User " << codigo_user << " | ";
-
+    transacoes <<"Codigo User " << _codigoUser << " | ";
+    return;
 }
 
-void Transacao::devolucaoEmprestimo(){
-   _dataRetorno = getData();
-   if(_dataRetorno>_dataVencimento){
-       std::cout << "Emprestimo atrasado! Favor pagar a quantia de " << calculaMulta() << " reais. " << std::endl;
-   }
+void Transacao::salvaDevolucao(){
 
-   //_l->set_disponivel(true);
-   std::cout << "Devolucao realizada. " << std::endl;
-
-    // Escrever no arquivo
     time_t mytime;
     mytime = time(NULL);
     struct tm tm = *localtime(&mytime);
@@ -66,15 +118,5 @@ void Transacao::devolucaoEmprestimo(){
         transacoes << " | Houve Atraso no Emprestimo";
     
     transacoes << "\n";
-}
-
-void Transacao::listarHistorico(){
-    std::ifstream leitura("Transacao/Lista_transacao.txt");
-    std::string linha;
-    if(leitura.is_open()){
-        while(getline(leitura,linha)){
-            std::cout << linha << std::endl;
-        }
-    }
-    leitura.close();
+    return;
 }

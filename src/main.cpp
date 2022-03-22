@@ -9,29 +9,19 @@ using namespace std;
 usuario *cria_usuario();
 DataModelLivro *cria_livro();
 
+DaoLivro books;
+
+Biblioteca lib(books);
+Transacao tra(books);
+
 int main(){
 
-    Biblioteca lib;
-    Transacao tra;
-    DaoLivro books;
-    books.getDataModels();
-
-    //DataModelLivro livro = *cria_livro();
-
-    //lib.registrar_livro(livro);
     lib.popular_livros_com_banco_de_dados();
-    //lib.listar_livros_cadastrados();
-    //lib.listar_livros_por_genero(" Aventura");
     lib.listar_livros_cadastrados();
 
-    tra.realizarEmprestimo("777", "105459");
-
-    /*lib.registrar_usuario(*cria_usuario());
-    lib.listar_usuarios_cadastrados();
-
-    lib.registrar_livro(*cria_livro());
-    lib.listar_livros_cadastrados();
-    lib.listar_livros_por_genero("Aventura");*/
+    tra.realizarEmprestimo();
+    tra.devolucaoEmprestimo();
+    tra.listarHistorico();
 
     return 0;
 }

@@ -17,6 +17,7 @@ private:
     // ATRIBUTOS
     map<string, usuario> usuarios;
     map<string, vector<DataModelLivro>> livros;
+    DaoLivro daoLivro;
 
 public:
     // MÉTODOS ESPECÍFICOS
@@ -31,7 +32,8 @@ public:
     // MÉTODOS DE ACESSO
     map<string, usuario> get_usuarios();
     void set_usuarios(map<string, usuario>);
-    // MÉTODOS DE MODIFICAÇÃO
+    // CONSTRUTOR
+    Biblioteca(DaoLivro&);
 };
 
 #endif // BIBLIOTECA_HEADER

@@ -27,7 +27,7 @@ void Biblioteca::listar_usuarios_cadastrados()
 
 bool Biblioteca::registrar_livro(DataModelLivro book)
 {
-    DaoLivro daoLivro;
+    //DaoLivro daoLivro;
 
     return daoLivro.saveDataModel(book);
 }
@@ -61,8 +61,8 @@ void Biblioteca::listar_livros_por_genero(string genero)
 
 void Biblioteca::popular_livros_com_banco_de_dados()
 {
-    DaoLivro livro;
-    livros = livro.getDataModels();
+    //DaoLivro livro;
+    livros = daoLivro.getDataModels();
 }
 
 map<string, usuario> Biblioteca::get_usuarios()
@@ -73,4 +73,8 @@ map<string, usuario> Biblioteca::get_usuarios()
 void Biblioteca::set_usuarios(map<string, usuario> usuarios)
 {
     this->usuarios = usuarios;
+}
+
+Biblioteca::Biblioteca(DaoLivro &dao){
+    daoLivro = dao;
 }
