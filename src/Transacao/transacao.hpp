@@ -1,5 +1,5 @@
 #include "../Usuarios/usuario.hpp"
-#include "../Livro/livro.hpp"
+#include "../Livro/DataModel/livro.hpp"
 #include "../Usuarios/usuariovip.hpp"
 
 #include <iostream>
@@ -16,22 +16,22 @@ class Transacao {
         long long int _dataRetorno; // Data retorno do emprestimo
         long long int _dataVencimento; // Prazo maximo para retorno do emprestimo sem multa
 
-        string _codigoLivro;
-        string _codigoUser;
-
+        std::string _codigoLivro;
+        std::string _codigoUser;
+        
         // METODOS PRIVADOS
         long long int getData();
         
 
     public:
         // METODOS
-        void realizarEmprestimo(string codigo_livro, string codigo_user);
+        void realizarEmprestimo(std::string codigo_livro, std::string codigo_user);
         void listarHistorico();
         void devolucaoEmprestimo();
         double calculaMulta();
 
-        void setCodigoTransacao(string);
-        string getCodigo();
+        void setCodigoTransacao(std::string);
+        std::string getCodigo();
         
 
         

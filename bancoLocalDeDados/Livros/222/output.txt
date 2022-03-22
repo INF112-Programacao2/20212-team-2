@@ -1,0 +1,7 @@
+{  
+Nome: caio
+Autor: caio
+Genero: Aventura
+Registro: 222
+Disponivel: Sim
+} 

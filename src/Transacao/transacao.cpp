@@ -22,23 +22,27 @@ double Transacao::calculaMulta(){
     return multa;
 }
 
-void Transacao::realizarEmprestimo(string codigo_livro, string codigo_user){
+void Transacao::realizarEmprestimo(std::string codigo_livro, string codigo_user){
     _dataEmprestimo =  getData(); // Pega a data do sistema
     _codigoLivro = codigo_livro;
-    _codigoUser = codigo_user; 
+    _codigoUser = codigo_user;
+ 
+
+
+
     int prazo; 
     std::cout << "Qual o prazo (em dias) para a devolucao do livro? ";
     std::cin >> prazo;
 
     _dataVencimento = _dataEmprestimo+(prazo*60*60); // Transforma o prazo em segundos e soma ao valor a data de emprestimo (em segundos)
     //l.set_disponivel(false); // Atualiza disponibilidade
-    std::cout << "Emprestimo realizado! Do livro " << codigo_livro << " para o usuario " << codigo_user << "." << std::endl;
+    std::cout << "Emprestimo realizado! Do livro " << _codigoLivro << " para o usuario " << codigo_user << "." << std::endl;
 
     time_t mytime;
     mytime = time(NULL);
     struct tm tm = *localtime(&mytime);
     transacoes <<"Data Emprestimo " <<  tm.tm_mday <<"/" <<tm.tm_mon + 1 <<"/" << tm.tm_year + 1900 << " | ";
-    transacoes <<"Codigo Livro " <<codigo_livro << " | ";
+    transacoes <<"Codigo Livro " << _codigoLivro << " | ";
     transacoes <<"Codigo User " << codigo_user << " | ";
 
 }
