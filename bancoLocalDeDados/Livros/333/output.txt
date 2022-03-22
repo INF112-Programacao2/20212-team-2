@@ -1,0 +1,7 @@
+{  
+Nome: teste
+Autor: teste
+Genero: teste
+Registro: 333
+Disponivel: Nao
+} 

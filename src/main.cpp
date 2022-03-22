@@ -1,43 +1,33 @@
 #include "Usuarios/usuario.hpp"
 #include "Biblioteca/biblioteca.hpp"
 #include "Transacao/transacao.hpp"
-
 #include <iostream>
 using namespace std;
 
 #define CHAR_MAX 200
 
 usuario *cria_usuario();
-livro *cria_livro();
+DataModelLivro *cria_livro();
 
+DaoLivro books;
 
-int main() {
+Biblioteca lib(books);
+Transacao tra(books);
 
-    biblioteca lib;
-    Transacao tra;
-    
-    lib.registrar_usuario(*cria_usuario());
-    lib.registrar_livro(*cria_livro());
+int main(){
 
-    
-    tra.realizarEmprestimo("333", "105450");
-    tra.devolucaoEmprestimo();
-    tra.realizarEmprestimo("222", "103213");
-    tra.devolucaoEmprestimo();
-
-    cin.ignore();
-
-    
+    lib.popular_livros_com_banco_de_dados();
     lib.listar_livros_cadastrados();
-    lib.listar_usuarios_cadastrados();
-    //lib.listar_livros_por_genero("Aventura");
+
+    tra.realizarEmprestimo();
+    tra.devolucaoEmprestimo();
     tra.listarHistorico();
 
     return 0;
-
 }
 
-usuario *cria_usuario() {
+usuario *cria_usuario()
+{
     usuario *u = new usuario;
 
     char nome[CHAR_MAX];
@@ -46,7 +36,7 @@ usuario *cria_usuario() {
 
     cout << "Insira o nome do usuario: ";
     cin.getline(nome, CHAR_MAX);
-    
+
     cout << "Insira o celular do usuario: ";
     cin.getline(celular, CHAR_MAX);
 
@@ -61,8 +51,10 @@ usuario *cria_usuario() {
     return u;
 }
 
-livro *cria_livro() {
-    livro *l = new livro;
+DataModelLivro *cria_livro()
+{
+    DataModelLivro *l = new DataModelLivro("teste", "autor", "genero", "registro", true);
+    
 
     char nome[CHAR_MAX];
     char autor[CHAR_MAX];
@@ -74,7 +66,7 @@ livro *cria_livro() {
 
     cout << "Insira o(s) autor(es) do livro: ";
     cin.getline(autor, CHAR_MAX);
-    
+
     cout << "Insira o genero do livro: ";
     cin.getline(genero, CHAR_MAX);
 

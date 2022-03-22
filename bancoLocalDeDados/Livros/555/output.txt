@@ -1,0 +1,7 @@
+{  
+Nome: asdf
+Autor: asdf
+Genero: asdf
+Registro: 555
+Disponivel: Sim
+} 
