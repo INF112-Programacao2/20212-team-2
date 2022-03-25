@@ -49,7 +49,7 @@ void Transacao::realizarEmprestimo(){
 
     // Atualiza disponibilidade e informa que o emprestimo foi realizado
     p.set_disponivel(false);
-    _livros.saveDataModel(p);
+    //_livros.saveDataModel(p);
     std::cout << "Emprestimo realizado! Do livro " << p.get_nome() << " para o usuario " << _codigoUser << "." << std::endl;
 
 
