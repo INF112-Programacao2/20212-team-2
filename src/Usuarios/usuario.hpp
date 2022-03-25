@@ -9,8 +9,8 @@ class usuario {
         // ATRIBUTOS
         string nome;
         string celular;
-        string codigo;
-        bool usuario_ativo;  
+        string codigoUser;
+        bool usuario_ativo;
     
     public:
 

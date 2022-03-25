@@ -18,6 +18,7 @@ int main(){
 
     lib.popular_livros_com_banco_de_dados();
     lib.listar_livros_cadastrados();
+    
 
     tra.realizarEmprestimo();
     lib.listar_livros_cadastrados();
@@ -27,9 +28,14 @@ int main(){
     return 0;
 }
 
-usuario *cria_usuario()
+usuario *cria_usuario() 
 {
+    char resposta;
+    std::cout << "Deseja cadastrar Usuario Premium?[S/N]" << std::endl; 
+    std::cin >> resposta;
+    UsuarioVip *v = new UsuarioVip;
     usuario *u = new usuario;
+    
 
     char nome[CHAR_MAX];
     char celular[CHAR_MAX];
@@ -44,12 +50,25 @@ usuario *cria_usuario()
     cout << "Insira o codigo do usuario (numero de matricula): ";
     cin.getline(codigo, CHAR_MAX);
 
-    u->set_nome(nome);
-    u->set_celular(celular);
-    u->set_codigo(codigo);
-    u->set_usuario_ativo(true);
 
-    return u;
+    if (resposta == 'S' || resposta == 's')
+    {
+        v->set_nome(nome);
+        v->set_celular(celular);
+        v->set_codigo(codigo);
+        v->set_usuario_ativo(true);
+        return v;
+    }
+    else {
+        u->set_nome(nome);
+        u->set_celular(celular);
+        u->set_codigo(codigo);
+        u->set_usuario_ativo(true);
+        return u;
+    }
+    
+
+    
 }
 
 DataModelLivro *cria_livro()

@@ -9,7 +9,7 @@ string usuario::get_celular() {
 }
 
 string usuario::get_codigo() {
-    return this->codigo;
+    return this->codigoUser;
 }
 
 bool usuario::is_usuario_ativo() {
@@ -25,7 +25,7 @@ void usuario::set_celular(string celular) {
 }
 
 void usuario::set_codigo(string codigo) {
-    this->codigo = codigo;
+    this->codigoUser = codigo;
 }
 
 void usuario::set_usuario_ativo(bool usuario_ativo) {
