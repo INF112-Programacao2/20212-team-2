@@ -48,7 +48,8 @@ void Transacao::realizarEmprestimo(){
     _dataVencimento = _dataEmprestimo+(prazo*60*60); // Transforma o prazo em segundos e soma ao valor a data de emprestimo (em segundos)
 
     // Atualiza disponibilidade e informa que o emprestimo foi realizado
-    //_livros.modificarDisponibilidadeById(_codigoLivro); 
+    p.set_disponivel(false);
+    _livros.saveDataModel(p);
     std::cout << "Emprestimo realizado! Do livro " << p.get_nome() << " para o usuario " << _codigoUser << "." << std::endl;
 
 

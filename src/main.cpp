@@ -20,8 +20,9 @@ int main(){
     lib.listar_livros_cadastrados();
 
     tra.realizarEmprestimo();
-    tra.devolucaoEmprestimo();
-    tra.listarHistorico();
+    lib.listar_livros_cadastrados();
+    //tra.devolucaoEmprestimo();
+    //tra.listarHistorico();
 
     return 0;
 }

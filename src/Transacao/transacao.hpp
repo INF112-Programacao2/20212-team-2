@@ -1,6 +1,6 @@
 #include "../Usuarios/usuario.hpp"
 #include "../Livro/DataModel/livro.hpp"
-#include "../Usuarios/usuariovip.hpp"
+#include "../UsuarioVip/usuariovip.hpp"
 #include "../Livro/daoLivro.hpp"
 
 #include <iostream>

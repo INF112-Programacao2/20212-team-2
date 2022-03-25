@@ -109,15 +109,17 @@ DataModelLivro DaoLivro::getDataModelById(std::string registro)
     else
     {
 
-        std::cerr << "ERRO: arquivo não foi aberto ou não existe" << std::endl;
+        //std::cout << "ERRO: arquivo não foi aberto ou não existe" << std::endl;
     }
     return livro;
 }
 bool DaoLivro::saveDataModel(DataModelLivro newLivro)
 {
+    
     //criação de arquivo
     struct stat st = {0};
     string filename("../bancoLocalDeDados/Livros/" + newLivro.get_registro());
+    
     const char *filename2 = filename.c_str();
 
     string cod("mkdir -p " + filename);
