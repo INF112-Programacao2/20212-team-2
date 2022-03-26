@@ -19,6 +19,7 @@ class usuario {
         string get_celular();
         string get_codigo();
         bool is_usuario_ativo();
+        void set_atributo(std::string atributo, std::string value);
 
         // MÉTODOS DE MODIFICAÇÃO
         void set_nome(string);

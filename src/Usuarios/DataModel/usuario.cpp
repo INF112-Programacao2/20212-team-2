@@ -39,3 +39,26 @@ string usuario::to_string() {
            "Codigo: " + get_codigo() + "\n" +
            "Usuario ativo? " + status;
 }
+
+void usuario::set_atributo(std::string atributo, std::string value){
+    
+    if(atributo == "Nome"){
+        this->nome = value;
+    }
+
+    if( atributo == "Celular"){
+        this->celular = value;
+    }
+
+    if(atributo == "Codigo"){
+        this->codigoUser = value;
+    }
+
+    if(atributo == "Usuario ativo"){
+        if(value == "Sim"){
+            this->usuario_ativo = true;
+        }else{
+            this->usuario_ativo = false;
+        }
+    }
+}

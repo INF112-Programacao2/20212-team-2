@@ -1,4 +1,4 @@
-#include "../Usuarios/usuario.hpp"
+#include "../Usuarios/DataModel/usuario.hpp"
 #include "../Livro/DataModel/livro.hpp"
 #include "../UsuarioVip/usuariovip.hpp"
 #include "../Livro/daoLivro.hpp"

@@ -1,4 +1,4 @@
-#include "Usuarios/usuario.hpp"
+#include "./Usuarios/DataModel/usuario.hpp"
 #include "Biblioteca/biblioteca.hpp"
 #include "Transacao/transacao.hpp"
 #include <iostream>
@@ -16,11 +16,14 @@ Transacao tra(books);
 
 int main(){
 
+    //lib.popular_livros_com_banco_de_dados();
+    //lib.listar_livros_cadastrados();
+    //lib.registrar_livro(*cria_livro());
     lib.popular_livros_com_banco_de_dados();
     lib.listar_livros_cadastrados();
-    
 
     tra.realizarEmprestimo();
+    lib.popular_livros_com_banco_de_dados();
     lib.listar_livros_cadastrados();
     //tra.devolucaoEmprestimo();
     //tra.listarHistorico();
