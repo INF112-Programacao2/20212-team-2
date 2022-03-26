@@ -1,0 +1,7 @@
+{  
+Nome: teste
+Autor: caio
+Genero: acao
+Registro: 999
+Disponivel: Sim
+} 

@@ -1,4 +1,4 @@
-#include "../../daos/Usuarios/usuario.hpp"
+#include "../../daos/Usuarios/DataModel/usuario.hpp"
 #include "../../daos/Livro/DataModel/livro.hpp"
 #include <iostream>
 #include <map>
@@ -19,6 +19,7 @@ public:
     // MÉTODOS ESPECÍFICOS
     bool registrar_usuario(Usuario);
     void listar_usuarios_cadastrados();
+    void popular_usuarios_com_banco_de_dados();
 
     bool registrar_livro(DataModelLivro);
     void listar_livros_cadastrados();
@@ -28,7 +29,6 @@ public:
     // MÉTODOS DE ACESSO
     map<string, Usuario> get_usuarios();
     void set_usuarios(map<string, Usuario>);
-    // MÉTODOS DE MODIFICAÇÃO
 };
 
 #endif // BIBLIOTECA_HEADER

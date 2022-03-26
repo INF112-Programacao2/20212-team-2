@@ -14,6 +14,7 @@ private:
     bool usuario_ativo;
 
 public:
+ 
     // MÉTODOS DE ACESSO
     string get_nome();
     string get_celular();
@@ -21,6 +22,7 @@ public:
     bool is_usuario_ativo();
 
     // MÉTODOS DE MODIFICAÇÃO
+    void set_atributo(std::string atributo, std::string value);
     void set_nome(string);
     void set_celular(string);
     void set_codigo(string);

@@ -1,4 +1,4 @@
-#include "./daos/Usuarios/usuario.cpp"
+#include "./daos/Usuarios/DataModel/usuario.cpp"
 #include "./features/biblioteca/biblioteca.cpp"
 #include <iostream>
 using namespace std;
@@ -13,20 +13,22 @@ int main()
 
     Biblioteca lib;
 
-    //DataModelLivro livro = *cria_livro();
+   // DataModelLivro livro = *cria_livro();
 
-    //lib.registrar_livro(livro);
+   // lib.registrar_livro(livro);
     lib.popular_livros_com_banco_de_dados();
-    //lib.listar_livros_cadastrados();
-    lib.listar_livros_por_genero(" Aventura");
+    lib.listar_livros_cadastrados();
+    //lib.listar_livros_por_genero(" Aventura");
 
-    /*lib.registrar_usuario(*cria_usuario());
+    lib.registrar_usuario(*cria_usuario());
     lib.listar_usuarios_cadastrados();
 
-    lib.registrar_livro(*cria_livro());
+    lib.popular_usuarios_com_banco_de_dados();
+    lib.listar_usuarios_cadastrados();
+    /*lib.registrar_livro(*cria_livro());
     lib.listar_livros_cadastrados();
-    lib.listar_livros_por_genero("Aventura");*/
-
+    lib.listar_livros_por_genero("Aventura");
+    */
     return 0;
 }
 

@@ -20,6 +20,29 @@ bool Usuario::is_usuario_ativo()
     return this->usuario_ativo;
 }
 
+void Usuario::set_atributo(std::string atributo, std::string value){
+    
+    if(atributo == "Nome"){
+        this->nome = value;
+    }
+
+    if( atributo == "Celular"){
+        this->celular = value;
+    }
+
+    if(atributo == "Codigo"){
+        this->codigo = value;
+    }
+
+    if(atributo == "Usuario ativo"){
+        if(value == "Sim"){
+            this->usuario_ativo = true;
+        }else{
+            this->usuario_ativo = false;
+        }
+    }
+}
+
 void Usuario::set_nome(string nome)
 {
     this->nome = nome;
