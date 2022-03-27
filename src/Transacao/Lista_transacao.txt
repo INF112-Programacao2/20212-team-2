@@ -1,13 +1,2 @@
 Data Emprestimo 27/3/2022 | Codigo Livro teste2 | Codigo User 999
-Data Devolucao 27/3/2022 | Codigo Livro Livro: teste2 | Codigo User User: 999
-Data Emprestimo 27/3/2022 | Codigo Livro teste | Codigo User 66
-Data Devolucao 27/3/2022 | Codigo Livro teste | Codigo User 999 | Houve Atraso no Emprestimo
-Data Emprestimo 27/3/2022 | Codigo Livro teste2 | Codigo User 777
-Data Emprestimo 27/3/2022 | Codigo Livro teste | Codigo User 999
-Data Emprestimo 27/3/2022 | Codigo Livro teste2 | Codigo User 999
-Data Devolucao 27/3/2022 | Codigo Livro Livro: teste2 | Codigo User User: 999
-Data Emprestimo 27/3/2022 | Codigo Livro teste2 | Codigo User user
-Data Devolucao 27/3/2022 | Codigo Livro Livro: teste2 | Codigo User User: 999
-Data Emprestimo 27/3/2022 | Codigo Livro abc | Codigo User user
-Data Emprestimo 27/3/2022 | Codigo Livro abc | Codigo User 999
-Data Devolucao 27/3/2022 | Codigo Livro Livro: abc | Codigo User User: user
+Data Devolucao 27/3/2022 | Codigo Livro teste2 | Codigo User 999

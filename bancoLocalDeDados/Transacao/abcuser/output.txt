@@ -1,6 +1,0 @@
-{  
-Registro Livro: abc
-Registro User: user
-DataEmprestimo: 1648399009
-DataVencimento: 1648406209
-} 

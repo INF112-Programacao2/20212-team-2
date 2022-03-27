@@ -1,7 +1,7 @@
 #include "transacao.hpp"
 #include <ctime>
 
-std::ofstream transacoes("Transacao/Lista_transacao.txt",ios::app);     // Abre arquivo
+
 
 long long int Transacao::getData(){
     time_t mytime;
@@ -52,7 +52,7 @@ void Transacao::realizarEmprestimo(){
     // Atualiza disponibilidade e informa que o emprestimo foi realizado
     p.set_disponivel(false);
     _livros.saveDataModel(p);
-
+    set_disponivel(true);
     std::cout << "Emprestimo realizado! Do livro " << p.get_nome() << " para o usuario " << u.get_nome() << "." << std::endl;
 
     // Escreve informacoes na ListaTransaçao
@@ -74,6 +74,11 @@ void Transacao::devolucaoEmprestimo(){
 
     getDataModelById(_codigoLivro+_codigoUser);
 
+    if(!(is_disponivel())){
+        std::cout << "Este livro nao esta emprestado a este usuario!\n";
+        return;
+        //throw std::invalid_argument("Esse livro nao esta emprestado para esse usuario! ");
+    }
 
 
     if(p.is_disponivel()==true){
@@ -91,9 +96,9 @@ void Transacao::devolucaoEmprestimo(){
     _livros.saveDataModel(p);
 
     std::cout << "Devolucao realizada. " << std::endl;
-    
-    // Escrever no arquivo
+    set_disponivel(false);
     salvaDevolucao();
+    saveDataModel();
 }
 
 void Transacao::listarHistorico(){
@@ -116,17 +121,20 @@ Transacao::Transacao(){
 }
 
 void Transacao::salvaEmprestimo(){
+
+    std::ofstream transacoes("Transacao/Lista_transacao.txt",ios::app);     // Abre arquivo
     time_t mytime;
     mytime = time(NULL);
     struct tm tm = *localtime(&mytime);
     transacoes <<"Data Emprestimo " <<  tm.tm_mday <<"/" <<tm.tm_mon + 1 <<"/" << tm.tm_year + 1900 << " | ";
     transacoes <<"Codigo Livro " << _codigoLivro << " | ";
     transacoes <<"Codigo User " << _codigoUser << "\n";
+    transacoes.close();
     return;
 }
 
 void Transacao::salvaDevolucao(){
-
+    std::ofstream transacoes("Transacao/Lista_transacao.txt",ios::app);     // Abre arquivo
     time_t mytime;
     mytime = time(NULL);
     struct tm tm = *localtime(&mytime);
@@ -138,14 +146,17 @@ void Transacao::salvaDevolucao(){
         transacoes << " | Houve Atraso no Emprestimo";
     
     transacoes << "\n";
+    transacoes.close();
     return;
 }
 
 std::string Transacao::to_string() {
-    return "Registro Livro: " + get_codigoLivro() + "\n" +
-           "Registro User: " + get_codigoUser() + "\n" +
+    std::string status = is_disponivel() ? "Sim" : "Nao";
+    return "RegistroLivro: " + get_codigoLivro() + "\n" +
+           "RegistroUser: " + get_codigoUser() + "\n" +
            "DataEmprestimo: " + get_dataEmprestimo() + "\n" +
-           "DataVencimento: " + get_dataVencimento() + "\n";
+           "DataVencimento: " + get_dataVencimento() + "\n" +
+           "Disponivel: " + status + "\n";
 }
 
 std::string Transacao::get_codigoLivro(){
@@ -166,22 +177,38 @@ std::string Transacao::get_dataVencimento(){
     return dataVencimento;
 }
 
+bool Transacao::is_disponivel(){
+    return _disponivel;
+}
+
 void Transacao::set_atributo(std::string atributo, std::string value){
     
-    if(atributo == "Registro Livro"){
-        this->_codigoLivro = value;
+    if(atributo == "RegistroLivro"){
+        _codigoLivro = value;
     }
 
-    if( atributo == "Registro User"){
-        this->_codigoUser = value;
+    if( atributo == "RegistroUser"){
+        _codigoUser = value;
     }
 
     if(atributo == "DataEmprestimo"){
-        this->_dataEmprestimo = stoi(value);
+        _dataEmprestimo = stoi(value);
     }
 
     if(atributo == "DataVencimento"){
-        this->_dataVencimento = stoi(value);
+        _dataVencimento = stoi(value);
+    }
+
+    if (atributo == "Disponivel"){
+    
+        if (value == "Sim")
+        {
+            set_disponivel(true);
+        }
+        else
+        {
+            set_disponivel(false);
+        }
     }
 }
 
@@ -285,4 +312,8 @@ bool Transacao::getDataModelById(std::string registro)
     }
     arq_in.close();
     return true;
+}
+
+void Transacao::set_disponivel(bool d){
+    _disponivel = d;
 }

@@ -6,7 +6,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
+#include <stdexcept>
 #include <cstdlib>
 #include <fstream>
 
@@ -27,6 +27,7 @@ class Transacao {
         long long int _dataEmprestimo; // Data momento do emprestimo
         long long int _dataRetorno; // Data retorno do emprestimo
         long long int _dataVencimento; // Prazo maximo para retorno do emprestimo sem multa
+        bool _disponivel;
         DaoLivro _livros;
         DaoUsuario _usuario;
 
@@ -45,6 +46,8 @@ class Transacao {
     public:
         // METODOS
         void realizarEmprestimo();
+        bool is_disponivel();
+        void set_disponivel(bool);
         void listarHistorico();
         void devolucaoEmprestimo();
         void set_atributo(std::string atributo, std::string value);
