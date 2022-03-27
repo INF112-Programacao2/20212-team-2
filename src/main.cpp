@@ -13,7 +13,7 @@ DaoLivro books;
 DaoUsuario users;
 
 Biblioteca lib(books);
-Transacao tra(books);
+Transacao tra;
 
 int main(){
 
@@ -27,6 +27,8 @@ int main(){
 
     tra.realizarEmprestimo();
     lib.listar_livros_cadastrados();
+    tra.devolucaoEmprestimo();
+    
     
     //lib.popular_livros_com_banco_de_dados();
     //lib.listar_livros_cadastrados();

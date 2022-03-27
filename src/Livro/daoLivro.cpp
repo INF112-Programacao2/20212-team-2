@@ -151,7 +151,6 @@ bool DaoLivro::saveDataModel(DataModelLivro newLivro)
     const char *filenameFinal2 = filenameFinal.c_str();
 
     //this->apagarDadosDoArquivo(filenameFinal2);
-    cout << filenameFinal << std::endl;
 
     outfile.open(filenameFinal);
     if (!outfile.is_open())

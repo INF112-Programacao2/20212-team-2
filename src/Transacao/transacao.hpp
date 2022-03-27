@@ -18,6 +18,7 @@ class Transacao {
         long long int _dataRetorno; // Data retorno do emprestimo
         long long int _dataVencimento; // Prazo maximo para retorno do emprestimo sem multa
         DaoLivro _livros;
+        DaoUsuario _usuario;
 
         std::string _codigoLivro;
         std::string _codigoUser;
@@ -33,11 +34,19 @@ class Transacao {
         void realizarEmprestimo();
         void listarHistorico();
         void devolucaoEmprestimo();
+        void set_atributo(std::string atributo, std::string value);
         double calculaMulta();
+
+        std::string get_dataEmprestimo();
+        std::string get_dataVencimento();
+        std::string get_codigoLivro();
+        std::string get_codigoUser();
+
 
         void setCodigoTransacao(std::string);
         std::string getCodigo();
-        Transacao(DaoLivro &livros);   
+        std::string to_string();
+        Transacao();   
 };
 
 #endif //TRANSACOES_HPP

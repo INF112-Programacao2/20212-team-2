@@ -3,5 +3,5 @@ Nome: teste
 Autor: teste
 Genero: teste
 Registro: teste
-Disponivel: Nao
+Disponivel: Sim
 } 

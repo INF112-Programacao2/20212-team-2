@@ -23,7 +23,6 @@ double Transacao::calculaMulta(){
 }
 
 void Transacao::realizarEmprestimo(){
-
     _dataEmprestimo =  getData(); // Pega a data do sistema
 
     // Salva os codigos do livro e usuario
@@ -31,7 +30,9 @@ void Transacao::realizarEmprestimo(){
     std::cin >> _codigoLivro;
     std::cout << "Digite o codigo do usuario a quem será emprestado: ";
     std::cin >> _codigoUser;
+
     DataModelLivro p = _livros.getDataModelById(_codigoLivro);
+    usuario u = _usuario.getDataModelById(_codigoUser);
 
     // Verifica se o livro está disponivel
     if(!(p.is_disponivel())){
@@ -51,7 +52,7 @@ void Transacao::realizarEmprestimo(){
     p.set_disponivel(false);
     _livros.saveDataModel(p);
 
-    std::cout << "Emprestimo realizado! Do livro " << p.get_nome() << " para o usuario " << _codigoUser << "." << std::endl;
+    std::cout << "Emprestimo realizado! Do livro " << p.get_nome() << " para o usuario " << u.get_nome() << "." << std::endl;
 
     // Escreve informacoes na ListaTransaçao
     salvaEmprestimo();
@@ -67,9 +68,14 @@ void Transacao::devolucaoEmprestimo(){
     std::cin >> _codigoUser;
     DataModelLivro p = _livros.getDataModelById(_codigoLivro);
 
-   if(_dataRetorno>_dataVencimento){
-       std::cout << "Emprestimo atrasado! Favor pagar a quantia de " << calculaMulta() << " reais. " << std::endl;
-   }
+    if(p.is_disponivel()==true){
+        std::cout << "Nao e possivel devolver um livro que nao esta emprestado no momento!\n";
+        return;
+    }
+
+    if(_dataRetorno>_dataVencimento){
+        std::cout << "Emprestimo atrasado! Favor pagar a quantia de " << calculaMulta() << " reais. " << std::endl;
+    }
 
     // Atualiza disponibilidade
      p.set_disponivel(true);
@@ -96,8 +102,8 @@ void Transacao::listarHistorico(){
     leitura.close();
 }
 
-Transacao::Transacao(DaoLivro &livros){
-    _livros = livros;
+Transacao::Transacao(){
+    
 }
 
 void Transacao::salvaEmprestimo(){
@@ -106,7 +112,7 @@ void Transacao::salvaEmprestimo(){
     struct tm tm = *localtime(&mytime);
     transacoes <<"Data Emprestimo " <<  tm.tm_mday <<"/" <<tm.tm_mon + 1 <<"/" << tm.tm_year + 1900 << " | ";
     transacoes <<"Codigo Livro " << _codigoLivro << " | ";
-    transacoes <<"Codigo User " << _codigoUser << " | ";
+    transacoes <<"Codigo User " << _codigoUser << "\n";
     return;
 }
 
@@ -115,11 +121,57 @@ void Transacao::salvaDevolucao(){
     time_t mytime;
     mytime = time(NULL);
     struct tm tm = *localtime(&mytime);
-    transacoes <<"Data Devolucao " << tm.tm_mday <<"/"<< tm.tm_mon + 1 << "/" << tm.tm_year + 1900;
+    transacoes <<"Data Devolucao " << tm.tm_mday <<"/"<< tm.tm_mon + 1 << "/" << tm.tm_year + 1900 << " | ";
+    transacoes <<"Codigo Livro " << _codigoLivro << " | ";
+    transacoes <<"Codigo User " << _codigoUser;
 
     if(_dataRetorno>_dataVencimento)
         transacoes << " | Houve Atraso no Emprestimo";
     
     transacoes << "\n";
     return;
+}
+
+std::string Transacao::to_string() {
+    return "Registro Livro: " + get_codigoLivro() + "\n" +
+           "Registro User: " + get_codigoUser() + "\n" +
+           "DataEmprestimo: " + get_dataEmprestimo() + "\n" +
+           "DataVencimento: " + get_dataVencimento() + "\n";
+}
+
+std::string Transacao::get_codigoLivro(){
+    return _codigoLivro;
+}
+
+std::string Transacao::get_codigoUser(){
+    return _codigoUser;
+}
+
+std::string Transacao::get_dataEmprestimo(){
+    std::string dataEmprestimo = std::to_string(_dataEmprestimo);
+    return dataEmprestimo;
+}
+
+std::string Transacao::get_dataVencimento(){
+    std::string dataVencimento = std::to_string(_dataVencimento);
+    return dataVencimento;
+}
+
+void Transacao::set_atributo(std::string atributo, std::string value){
+    
+    if(atributo == "Registro Livro"){
+        this->_codigoLivro = value;
+    }
+
+    if( atributo == "Registro User"){
+        this->_codigoUser = value;
+    }
+
+    if(atributo == "DataEmprestimo"){
+        this->_dataEmprestimo = stoi(value);
+    }
+
+    if(atributo == "DataVencimento"){
+        this->_dataVencimento = stoi(value);
+    }
 }
