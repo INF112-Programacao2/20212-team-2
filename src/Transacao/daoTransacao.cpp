@@ -1,5 +1,4 @@
-#include "daoUsuario.hpp"
-//#include "DataModel/usuario.hpp"
+#include "daoTransacao.hpp"
 #include <iostream>
 #include <map>
 #include <vector>
@@ -17,51 +16,22 @@
 
 using namespace std;
 
-DaoUsuario::DaoUsuario()
+DaoTransacao::DaoTransacao()
 {
 }
 
-map<std::string, usuario> DaoUsuario::getDataModels()
-{
-    //implementar busca do banco de dados
-    map<string, usuario> Usuarios;
-
-    DIR *dir;
-    struct dirent *lsdir;
-
-    dir = opendir("../bancoLocalDeDados/Usuarios");
-
-    /* print all the files and directories within directory */
-    while ((lsdir = readdir(dir)) != NULL && lsdir->d_name != "." && lsdir->d_name != "..")
-    {
-        //printf("%s\n", lsdir->d_name);
-        usuario u;
-        vector<usuario> v;
-        u = this->getDataModelById(lsdir->d_name);
-
-        if (u.get_codigo() != "")
-        {
-            Usuarios.insert({u.get_codigo(), u});
-        }
-    }
-
-    closedir(dir);
-
-    return Usuarios;
-}
-
-usuario DaoUsuario::getDataModelById(std::string registro)
+Transacao DaoTransacao::getDataModelById(std::string registro)
 {
 
     //implementar busca por id do banco de dados
-    usuario user;
+    Transacao tra;
 
     FILE *arq;
     char Linha[100];
     char *result;
     int i;
 
-    string filename("../bancoLocalDeDados/Usuarios/" + registro + "/output.txt");
+    string filename("../bancoLocalDeDados/Transacao/" + registro + "/output.txt");
     const char *filename2 = filename.c_str();
 
     string linha;
@@ -80,7 +50,7 @@ usuario DaoUsuario::getDataModelById(std::string registro)
                 std::string value = linha.substr(linha.find(" ") + 1, linha.length() - 1);
                 std::string atributo = linha.substr(0, linha.find(":"));
 
-                user.set_atributo(atributo, value);
+                tra.set_atributo(atributo, value);
             }
         }
         arq_in.close();
@@ -90,13 +60,13 @@ usuario DaoUsuario::getDataModelById(std::string registro)
 
         //cout << "ERRO: arquivo não foi aberto ou não existe" << endl;
     }
-    return user;
+    return tra;
 }
-bool DaoUsuario::saveDataModel(usuario newuser)
+bool DaoTransacao::saveDataModel(Transacao newtra)
 {
     //criação de arquivo
     struct stat st = {0};
-    string filename("../bancoLocalDeDados/Usuarios/" + newuser.get_codigo());
+    string filename("../bancoLocalDeDados/Transacao/" + newtra.get_codigoLivro()+newtra.get_codigoUser());
     const char *filename2 = filename.c_str();
 
     string cod("mkdir -p " + filename);
@@ -121,7 +91,7 @@ bool DaoUsuario::saveDataModel(usuario newuser)
 
     string text("{  \n");
     //construindo o texto que sera salvo
-    text = text + newuser.to_string();
+    text = text + newtra.to_string();
     text = text + "} \n";
     string filenameFinal(filename + "/output.txt");
     fstream outfile;
@@ -152,7 +122,7 @@ bool DaoUsuario::apagarDadosDoArquivo(const char *path)
     return true;
 }
 
-bool DaoUsuario::deleteDataModel(usuario userDeletado)
+bool DaoUsuario::deleteDataModel(usuario traDeletado)
 {
     return true;
 }
