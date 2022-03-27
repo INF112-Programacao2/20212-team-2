@@ -32,7 +32,7 @@ void Transacao::realizarEmprestimo(){
     std::cout << "Digite o codigo do usuario a quem será emprestado: ";
     std::cin >> _codigoUser;
     DataModelLivro p = _livros.getDataModelById(_codigoLivro);
-    
+
     // Verifica se o livro está disponivel
     if(!(p.is_disponivel())){
         std::cout<< "O livro nao esta disponivel no momento.\n";
@@ -49,11 +49,13 @@ void Transacao::realizarEmprestimo(){
 
     // Atualiza disponibilidade e informa que o emprestimo foi realizado
     p.set_disponivel(false);
-    //_livros.saveDataModel(p);
+
+    std::cout << p.to_string() <<std::endl;
+    _livros.saveDataModel(p);
     std::cout << "Emprestimo realizado! Do livro " << p.get_nome() << " para o usuario " << _codigoUser << "." << std::endl;
 
 
-    salvaEmprestimo();
+   salvaEmprestimo();
 }
 
 void Transacao::devolucaoEmprestimo(){

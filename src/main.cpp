@@ -18,7 +18,7 @@ int main(){
 
     //lib.popular_livros_com_banco_de_dados();
     //lib.listar_livros_cadastrados();
-    //lib.registrar_livro(*cria_livro());
+    lib.registrar_livro(*cria_livro());
     lib.popular_livros_com_banco_de_dados();
     lib.listar_livros_cadastrados();
 

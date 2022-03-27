@@ -77,7 +77,7 @@ usuario DaoUsuario::getDataModelById(std::string registro)
 
             if (linha != "{" && linha != "}" && linha.find(" ") > 0 && linha.find(" ") < linha.length())
             {
-                std::string value = linha.substr(linha.find(" "), linha.length() - 1);
+                std::string value = linha.substr(linha.find(" ") + 1, linha.length() - 1);
                 std::string atributo = linha.substr(0, linha.find(":"));
 
                 user.set_atributo(atributo, value);

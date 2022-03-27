@@ -98,7 +98,7 @@ DataModelLivro DaoLivro::getDataModelById(std::string registro)
 
             if (linha != "{" && linha != "}" && linha.find(" ") > 0 && linha.find(" ") < linha.length())
             {
-                std::string value = linha.substr(linha.find(" "), linha.length() - 1);
+                std::string value = linha.substr(linha.find(" ") + 1, linha.length() - 1);
                 std::string atributo = linha.substr(0, linha.find(":"));
 
                 livro.set_atributo(atributo, value);
@@ -147,13 +147,13 @@ bool DaoLivro::saveDataModel(DataModelLivro newLivro)
     text = text + newLivro.to_string();
     text = text + "} \n";
     string filenameFinal(filename + "/output.txt");
-    fstream outfile;
-
+    fstream outfile;    
     const char *filenameFinal2 = filenameFinal.c_str();
 
-    this->apagarDadosDoArquivo(filenameFinal2);
+    //this->apagarDadosDoArquivo(filenameFinal2);
+    cout << filenameFinal << std::endl;
 
-    outfile.open(filenameFinal, std::ios_base::app);
+    outfile.open(filenameFinal);
     if (!outfile.is_open())
     {
         cerr << "failed to open " << filenameFinal << '\n';

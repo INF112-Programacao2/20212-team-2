@@ -36,7 +36,7 @@ void DataModelLivro::set_atributo(std::string atributo, std::string value)
 
     if (atributo == "Disponivel")
     {
-        if (value == " Sim")
+        if (value == "Sim")
         {
             set_disponivel(true);
         }
