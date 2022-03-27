@@ -2,12 +2,14 @@
 #include "Biblioteca/biblioteca.hpp"
 #include "Transacao/transacao.hpp"
 #include <iostream>
+#include <stdexcept>
 using namespace std;
 
 #define CHAR_MAX 200
 
 usuario *cria_usuario();
 DataModelLivro *cria_livro();
+void interface();
 
 DaoLivro books;
 DaoUsuario users;
@@ -17,30 +19,13 @@ Transacao tra;
 
 int main(){
 
-    //lib.popular_livros_com_banco_de_dados();
-    //lib.listar_livros_cadastrados();
-    
-   
-    lib.popular_usuarios_com_banco_de_dados();
-    lib.popular_livros_com_banco_de_dados();
-    lib.listar_livros_cadastrados();
-
-    //tra.realizarEmprestimo();
-    tra.realizarEmprestimo();
-    //tra.listarHistorico();
-    //lib.listar_livros_cadastrados();
-    tra.devolucaoEmprestimo();
-    //tra.devolucaoEmprestimo();
-    tra.listarHistorico();
-    
-    //lib.popular_livros_com_banco_de_dados();
-    //lib.listar_livros_cadastrados();
-
-    //tra.realizarEmprestimo();
-    //lib.popular_livros_com_banco_de_dados();
-    //lib.listar_livros_cadastrados();
-    //tra.devolucaoEmprestimo();
-    //tra.listarHistorico();
+    try{
+        interface();
+    } catch (std::invalid_argument &e){
+        std::cerr << e.what() << std::endl;
+    } catch (std::exception &e2){
+        std::cerr << e2.what()<< std::endl;
+    }
 
     return 0;
 }
@@ -118,4 +103,69 @@ DataModelLivro *cria_livro()
     l->set_disponivel(true);
 
     return l;
+}
+
+void interface(){
+    int entrada=0; // Entrada de dados pelo usuario
+
+    std::cout << "*** Bem vindo ao sistema Bibliotecario da UFV ***\n";
+    std::cout << std::endl;
+    std::cout << "Como podemos te ajudar hoje?\n";
+
+    while(true){
+        std::cout<<std::endl;
+        std::cout << "Digite 1 para listar todos os livros disponiveis\n";
+        std::cout << "Digite 2 para listar todos os usuarios disponiveis\n";
+        std::cout << "Digite 3 para realizar um emprestimo\n";
+        std::cout << "Digite 4 para devolver um emprestimo\n";
+        std::cout << "Digite 5 para listar os livros disponiveis de um genero especifico\n";
+        std::cout << "Digite 6 para listar todas as transacoes de livros realizadas\n";
+        std::cout << "Digite 7 para cadastrar um novo livro\n";
+        std::cout << "Digite 8 para cadastrar um novo usuario\n";
+        std::cout << "Digite um valor negativo para sair do sistema\n";
+
+        std::cin>> entrada;
+
+        if(entrada==1){
+            lib.listar_livros_cadastrados();
+        }
+        if(entrada==2){
+            lib.listar_usuarios_cadastrados();
+        }
+        if(entrada==3){
+            tra.realizarEmprestimo();
+        }
+        if(entrada==4){
+            tra.devolucaoEmprestimo();
+        }
+        if(entrada==5){
+            std::string genero;
+            std::cout << "Qual o genero do livro que deseja listar?";
+            std::cin >> genero;
+            lib.listar_livros_por_genero(genero);
+        }
+        if(entrada==6){
+            tra.listarHistorico();
+        }
+        if(entrada==7){
+            cin.ignore();
+            lib.registrar_livro(*cria_livro());
+        }
+        if(entrada==8){
+            cin.ignore();
+            lib.registrar_usuario(*cria_usuario());
+        }
+        if(entrada<0){
+            std::cout << "Obrigado por utilizar nosso sistema!\n";
+            break;
+        }
+    }
+
+    std::cout << std::endl;
+    std::cout << "Feito por:\n";
+    std::cout << "Caio Gomes Braga (@caiobraga)\n";
+    std::cout << "Gabriel Moraes Ribeiro (@GabrielMoraesRibeiro)\n";
+    std::cout << "Henrique Andrade Lopes (@H3nriqu3L)\n";
+    std::cout << "Lucas Mombach (@Lucas-Mombach)\n";
+
 }

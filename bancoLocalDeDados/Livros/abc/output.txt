@@ -1,0 +1,7 @@
+{  
+Nome: abc
+Autor: abc
+Genero: abc
+Registro: abc
+Disponivel: Sim
+} 

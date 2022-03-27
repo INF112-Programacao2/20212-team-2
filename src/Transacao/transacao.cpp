@@ -40,13 +40,7 @@ void Transacao::realizarEmprestimo(){
         return;
     }
 
-    // Verifica se usuario é ativo
-    if(!u.is_usuario_ativo()){
-        std::cout << "Usuario nao esta ativo!\n";
-        return;
-    }
 
-    
     // Prazo para devolucao
     int prazo; 
     std::cout << "Qual o prazo (em dias) para a devolucao do livro? ";
@@ -62,8 +56,9 @@ void Transacao::realizarEmprestimo(){
     std::cout << "Emprestimo realizado! Do livro " << p.get_nome() << " para o usuario " << u.get_nome() << "." << std::endl;
 
     // Escreve informacoes na ListaTransaçao
-    saveDataModel();
     salvaEmprestimo();
+    saveDataModel();
+    
 }
 
 void Transacao::devolucaoEmprestimo(){
@@ -79,15 +74,13 @@ void Transacao::devolucaoEmprestimo(){
 
     getDataModelById(_codigoLivro+_codigoUser);
 
+
+
     if(p.is_disponivel()==true){
         std::cout << "Nao e possivel devolver um livro que nao esta emprestado no momento!\n";
         return;
     }
 
-    if(!u.is_usuario_ativo()){
-        std::cout << "Usuario nao esta ativo!\n";
-        return;
-    }
 
     if(_dataRetorno>_dataVencimento){
         std::cout << "Emprestimo atrasado! Favor pagar a quantia de " << calculaMulta() << " reais. " << std::endl;
@@ -98,7 +91,7 @@ void Transacao::devolucaoEmprestimo(){
     _livros.saveDataModel(p);
 
     std::cout << "Devolucao realizada. " << std::endl;
-
+    
     // Escrever no arquivo
     salvaDevolucao();
 }
@@ -227,7 +220,7 @@ bool Transacao::saveDataModel()
     fstream outfile;
 
     const char *filenameFinal2 = filenameFinal.c_str();
-
+    
     this->apagarDadosDoArquivo(filenameFinal2);
 
     outfile.open(filenameFinal, std::ios_base::app);
@@ -252,7 +245,7 @@ bool Transacao::apagarDadosDoArquivo(const char *path)
     return true;
 }
 
-void Transacao::getDataModelById(std::string registro)
+bool Transacao::getDataModelById(std::string registro)
 {
 
     //implementar busca por id do banco de dados
@@ -283,12 +276,13 @@ void Transacao::getDataModelById(std::string registro)
                 set_atributo(atributo, value);
             }
         }
-        arq_in.close();
+        
     }
     else
     {
-
-        //cout << "ERRO: arquivo não foi aberto ou não existe" << endl;
+        throw std::invalid_argument("Arquivo nao foi aberto ou nao existe!\n");
+        return false;
     }
-    return;
+    arq_in.close();
+    return true;
 }

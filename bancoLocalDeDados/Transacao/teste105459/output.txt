@@ -1,6 +1,0 @@
-{  
-Registro Livro: teste
-Registro User: 105459
-DataEmprestimo: 1648392427
-DataVencimento: 1648410427
-} 

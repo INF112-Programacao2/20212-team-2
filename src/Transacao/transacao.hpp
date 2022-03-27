@@ -39,7 +39,7 @@ class Transacao {
         void salvaDevolucao(); // Escreve informacoes da devolucao do emprestimo no .txt
         bool saveDataModel();
         bool apagarDadosDoArquivo(const char *path);
-        void getDataModelById(std::string registro);
+        bool getDataModelById(std::string registro);
         
 
     public:

@@ -104,13 +104,13 @@ DataModelLivro DaoLivro::getDataModelById(std::string registro)
                 livro.set_atributo(atributo, value);
             }
         }
-        arq_in.close();
+        
     }
     else
     {
-
-        //std::cout << "ERRO: arquivo não foi aberto ou não existe" << std::endl;
+        throw std::invalid_argument("Arquivo nao foi aberto ou nao existe!\n");
     }
+    arq_in.close();
     return livro;
 }
 bool DaoLivro::saveDataModel(DataModelLivro newLivro)
@@ -150,7 +150,7 @@ bool DaoLivro::saveDataModel(DataModelLivro newLivro)
     fstream outfile;    
     const char *filenameFinal2 = filenameFinal.c_str();
 
-    //this->apagarDadosDoArquivo(filenameFinal2);
+    this->apagarDadosDoArquivo(filenameFinal2);
 
     outfile.open(filenameFinal);
     if (!outfile.is_open())

@@ -1,5 +1,6 @@
 #include "daoUsuario.hpp"
 //#include "DataModel/usuario.hpp"
+#include <stdexcept>
 #include <iostream>
 #include <map>
 #include <vector>
@@ -83,13 +84,13 @@ usuario DaoUsuario::getDataModelById(std::string registro)
                 user.set_atributo(atributo, value);
             }
         }
-        arq_in.close();
+        
     }
     else
     {
-
-        //cout << "ERRO: arquivo não foi aberto ou não existe" << endl;
+        throw std::invalid_argument("Arquivo nao foi aberto ou nao existe!\n");
     }
+    arq_in.close();
     return user;
 }
 bool DaoUsuario::saveDataModel(usuario newuser)
