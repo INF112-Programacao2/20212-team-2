@@ -1,5 +1,6 @@
 #include "usuariovip.hpp"
 
-int get_taxa(){
-  return 3; // multa é uma taxa fixa para os UsuariosPremium
-}
+double usuariovip::desconto_multa(double &multa){
+  return multa*0.8;
+} 
+

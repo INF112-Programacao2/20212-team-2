@@ -18,6 +18,9 @@ double Transacao::calculaMulta(){
     double multa = 5; //Multa começa com o valor minimo de 5 reais
     atraso = ((_dataRetorno-_dataVencimento)/60.0)/24.0; // Tempo atraso em dias
     multa += atraso*2; // Valor da multa é 5 reais + 2 reais por dia de atraso
+    //aplica o desconto de acordo com o tipo de usuario
+    usuario user = _usuarios.getDataModelById(_codigoUser);
+    multa = user.desconto_multa(multa);
     
     return multa;
 }
@@ -32,7 +35,7 @@ void Transacao::realizarEmprestimo(){
     std::cin >> _codigoUser;
 
     DataModelLivro p = _livros.getDataModelById(_codigoLivro);
-    usuario u = _usuario.getDataModelById(_codigoUser);
+    usuario u = _usuarios.getDataModelById(_codigoUser);
 
     // Verifica se o livro está disponivel
     if(!(p.is_disponivel())){
@@ -70,7 +73,7 @@ void Transacao::devolucaoEmprestimo(){
     std::cout << "Digite o codigo do usuario que devolveu: ";
     std::cin >> _codigoUser;
     DataModelLivro p = _livros.getDataModelById(_codigoLivro);
-    usuario u = _usuario.getDataModelById(_codigoUser);
+    usuario u = _usuarios.getDataModelById(_codigoUser);
 
     getDataModelById(_codigoLivro+_codigoUser);
 

@@ -29,7 +29,7 @@ class Transacao {
         long long int _dataVencimento; // Prazo maximo para retorno do emprestimo sem multa
         bool _disponivel;
         DaoLivro _livros;
-        DaoUsuario _usuario;
+        DaoUsuario _usuarios;
 
         std::string _codigoLivro;
         std::string _codigoUser;

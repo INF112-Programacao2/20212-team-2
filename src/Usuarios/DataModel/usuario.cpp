@@ -62,3 +62,6 @@ void usuario::set_atributo(std::string atributo, std::string value){
         }
     }
 }
+double usuario::desconto_multa(double &multa ){
+    return multa*1;
+}

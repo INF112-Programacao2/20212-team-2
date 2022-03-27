@@ -1,13 +1,10 @@
 #include "../Usuarios/DataModel/usuario.hpp"
 
-class UsuarioVip: public usuario{
-
-public:
-
-int get_taxa();
-
-
+class usuariovip: public usuario
+{
+  public:
     
-
-
+    virtual double desconto_multa(double &multa) override;
 };
+
+

@@ -29,6 +29,9 @@ class usuario {
 
         // TO_STRING
         string to_string();
+
+        //  
+        virtual double desconto_multa(double &multa );
 };
 
 #endif // USUARIO_HEADER
