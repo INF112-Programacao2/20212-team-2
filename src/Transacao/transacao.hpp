@@ -3,6 +3,16 @@
 #include "../UsuarioVip/usuariovip.hpp"
 #include "../Livro/daoLivro.hpp"
 #include "../Usuarios/daoUsuario.hpp"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+#include <cstdlib>
+#include <fstream>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <dirent.h>
 
 #include <iostream>
 #include <string>
@@ -27,6 +37,9 @@ class Transacao {
         long long int getData();
         void salvaEmprestimo(); // Escreve informacoes emprestimo no .txt
         void salvaDevolucao(); // Escreve informacoes da devolucao do emprestimo no .txt
+        bool saveDataModel();
+        bool apagarDadosDoArquivo(const char *path);
+        void getDataModelById(std::string registro);
         
 
     public:

@@ -25,10 +25,13 @@ int main(){
     lib.popular_livros_com_banco_de_dados();
     lib.listar_livros_cadastrados();
 
+    //tra.realizarEmprestimo();
     tra.realizarEmprestimo();
-    lib.listar_livros_cadastrados();
+    //tra.listarHistorico();
+    //lib.listar_livros_cadastrados();
     tra.devolucaoEmprestimo();
-    
+    //tra.devolucaoEmprestimo();
+    tra.listarHistorico();
     
     //lib.popular_livros_com_banco_de_dados();
     //lib.listar_livros_cadastrados();

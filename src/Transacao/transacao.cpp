@@ -39,6 +39,13 @@ void Transacao::realizarEmprestimo(){
         std::cout<< "O livro nao esta disponivel no momento.\n";
         return;
     }
+
+    // Verifica se usuario é ativo
+    if(!u.is_usuario_ativo()){
+        std::cout << "Usuario nao esta ativo!\n";
+        return;
+    }
+
     
     // Prazo para devolucao
     int prazo; 
@@ -55,6 +62,7 @@ void Transacao::realizarEmprestimo(){
     std::cout << "Emprestimo realizado! Do livro " << p.get_nome() << " para o usuario " << u.get_nome() << "." << std::endl;
 
     // Escreve informacoes na ListaTransaçao
+    saveDataModel();
     salvaEmprestimo();
 }
 
@@ -67,9 +75,17 @@ void Transacao::devolucaoEmprestimo(){
     std::cout << "Digite o codigo do usuario que devolveu: ";
     std::cin >> _codigoUser;
     DataModelLivro p = _livros.getDataModelById(_codigoLivro);
+    usuario u = _usuario.getDataModelById(_codigoUser);
+
+    getDataModelById(_codigoLivro+_codigoUser);
 
     if(p.is_disponivel()==true){
         std::cout << "Nao e possivel devolver um livro que nao esta emprestado no momento!\n";
+        return;
+    }
+
+    if(!u.is_usuario_ativo()){
+        std::cout << "Usuario nao esta ativo!\n";
         return;
     }
 
@@ -174,4 +190,105 @@ void Transacao::set_atributo(std::string atributo, std::string value){
     if(atributo == "DataVencimento"){
         this->_dataVencimento = stoi(value);
     }
+}
+
+bool Transacao::saveDataModel()
+{
+    //criação de arquivo
+    struct stat st = {0};
+    string filename("../bancoLocalDeDados/Transacao/" + get_codigoLivro() + get_codigoUser());
+    const char *filename2 = filename.c_str();
+
+    string cod("mkdir -p " + filename);
+    const char *code2 = cod.c_str();
+
+    if (stat(filename2, &st) == -1)
+    {
+        const int dir_err = system(code2);
+        if (-1 == dir_err)
+        {
+            printf("Error creating directory!n");
+            exit(1);
+            return false;
+        }
+        else
+        {
+            cout << "Arquivo criado com sucesso" << endl;
+        }
+    }
+
+    //salvando o dado
+
+    string text("{  \n");
+    //construindo o texto que sera salvo
+    text = text + to_string();
+    text = text + "} \n";
+    string filenameFinal(filename + "/output.txt");
+    fstream outfile;
+
+    const char *filenameFinal2 = filenameFinal.c_str();
+
+    this->apagarDadosDoArquivo(filenameFinal2);
+
+    outfile.open(filenameFinal, std::ios_base::app);
+    if (!outfile.is_open())
+    {
+        cerr << "failed to open " << filenameFinal << '\n';
+        return false;
+    }
+    else
+    {
+        outfile.write(text.data(), text.size());
+        cerr << "Done Writing!" << endl;
+        return true;
+    }
+}
+
+bool Transacao::apagarDadosDoArquivo(const char *path)
+{
+    FILE *arquivo;
+    arquivo = fopen(path, "w");
+    fclose(arquivo);
+    return true;
+}
+
+void Transacao::getDataModelById(std::string registro)
+{
+
+    //implementar busca por id do banco de dados
+    FILE *arq;
+    char Linha[100];
+    char *result;
+    int i;
+
+    string filename("../bancoLocalDeDados/Transacao/" + registro + "/output.txt");
+    const char *filename2 = filename.c_str();
+
+    string linha;
+    //ifstream – abre o arquivo apenas para leitura
+    ifstream arq_in(filename2);
+    if (arq_in.is_open())
+    {
+        //eof() - retorna true ao atingir o fim do arquivo
+        while (!arq_in.eof())
+        {
+            getline(arq_in, linha);
+            //cout << linha << endl;
+
+            if (linha != "{" && linha != "}" && linha.find(" ") > 0 && linha.find(" ") < linha.length())
+            {
+                std::string value = linha.substr(linha.find(" ") + 1, linha.length() - 1);
+                std::string atributo = linha.substr(0, linha.find(":"));
+
+                set_atributo(atributo, value);
+            }
+        }
+        arq_in.close();
+    }
+    else
+    {
+
+        //cout << "ERRO: arquivo não foi aberto ou não existe" << endl;
+    }
+    return;
 }
