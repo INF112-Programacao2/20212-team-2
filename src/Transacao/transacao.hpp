@@ -2,6 +2,7 @@
 #include "../Livro/DataModel/livro.hpp"
 #include "../UsuarioVip/usuariovip.hpp"
 #include "../Livro/daoLivro.hpp"
+#include "../Usuarios/daoUsuario.hpp"
 
 #include <iostream>
 #include <string>

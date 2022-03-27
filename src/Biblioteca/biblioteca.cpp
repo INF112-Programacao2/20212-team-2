@@ -1,5 +1,5 @@
 #include "biblioteca.hpp"
-#include "../Livro/daoLivro.cpp"
+#include "../Livro/daoLivro.hpp"
 
 
 #include <map>
@@ -9,16 +9,15 @@ using namespace std;
 
 bool Biblioteca::registrar_usuario(usuario user)
 {
-    if (usuarios.find(user.get_codigo()) == usuarios.end())
-    {
-        usuarios.insert({user.get_codigo(), user});
-        return true;
-    }
-    return false;
+    DaoUsuario daoUsuario;
+
+    return daoUsuario.saveDataModel(user);
 }
 
 void Biblioteca::listar_usuarios_cadastrados()
 {
+    popular_usuarios_com_banco_de_dados();
+
     for (auto &usuario : usuarios)
     {
         cout << usuario.second.to_string() << endl;
@@ -34,7 +33,7 @@ bool Biblioteca::registrar_livro(DataModelLivro book)
 
 void Biblioteca::listar_livros_cadastrados()
 {
-
+    popular_livros_com_banco_de_dados();
     cout << endl;
     for (auto const &lista : livros)
     {
@@ -64,6 +63,13 @@ void Biblioteca::popular_livros_com_banco_de_dados()
     //DaoLivro livro;
     livros = daoLivro.getDataModels();
 }
+
+void Biblioteca::popular_usuarios_com_banco_de_dados(){
+    DaoUsuario daoUsuario;
+
+    usuarios = daoUsuario.getDataModels();
+}
+
 
 map<string, usuario> Biblioteca::get_usuarios()
 {

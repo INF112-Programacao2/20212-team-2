@@ -1,6 +1,7 @@
 #include "../Usuarios/DataModel/usuario.hpp"
 #include"../Livro/DataModel/livro.hpp"
 #include "../Livro/daoLivro.hpp"
+#include "../Usuarios/daoUsuario.hpp"
 
 
 #include <iostream>
@@ -28,6 +29,7 @@ public:
     void listar_livros_cadastrados();
     void listar_livros_por_genero(string);
     void popular_livros_com_banco_de_dados();
+    void popular_usuarios_com_banco_de_dados();
 
     // MÉTODOS DE ACESSO
     map<string, usuario> get_usuarios();

@@ -1,0 +1,6 @@
+{  
+Nome: user
+Celular: user
+Codigo: user
+Usuario ativo? Sim
+} 

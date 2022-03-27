@@ -10,6 +10,7 @@ usuario *cria_usuario();
 DataModelLivro *cria_livro();
 
 DaoLivro books;
+DaoUsuario users;
 
 Biblioteca lib(books);
 Transacao tra(books);
@@ -18,13 +19,21 @@ int main(){
 
     //lib.popular_livros_com_banco_de_dados();
     //lib.listar_livros_cadastrados();
-    lib.registrar_livro(*cria_livro());
+    
+   
+    lib.popular_usuarios_com_banco_de_dados();
     lib.popular_livros_com_banco_de_dados();
     lib.listar_livros_cadastrados();
 
     tra.realizarEmprestimo();
-    lib.popular_livros_com_banco_de_dados();
     lib.listar_livros_cadastrados();
+    
+    //lib.popular_livros_com_banco_de_dados();
+    //lib.listar_livros_cadastrados();
+
+    //tra.realizarEmprestimo();
+    //lib.popular_livros_com_banco_de_dados();
+    //lib.listar_livros_cadastrados();
     //tra.devolucaoEmprestimo();
     //tra.listarHistorico();
 
@@ -35,7 +44,8 @@ usuario *cria_usuario()
 {
     char resposta;
     std::cout << "Deseja cadastrar Usuario Premium?[S/N]" << std::endl; 
-    std::cin >> resposta;
+    std::cin >> resposta;\
+    cin.ignore();
     UsuarioVip *v = new UsuarioVip;
     usuario *u = new usuario;
     

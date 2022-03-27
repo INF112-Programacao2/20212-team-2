@@ -49,13 +49,12 @@ void Transacao::realizarEmprestimo(){
 
     // Atualiza disponibilidade e informa que o emprestimo foi realizado
     p.set_disponivel(false);
-
-    std::cout << p.to_string() <<std::endl;
     _livros.saveDataModel(p);
+
     std::cout << "Emprestimo realizado! Do livro " << p.get_nome() << " para o usuario " << _codigoUser << "." << std::endl;
 
-
-   salvaEmprestimo();
+    // Escreve informacoes na ListaTransaçao
+    salvaEmprestimo();
 }
 
 void Transacao::devolucaoEmprestimo(){
@@ -73,7 +72,8 @@ void Transacao::devolucaoEmprestimo(){
    }
 
     // Atualiza disponibilidade
-    //_livros.modificarDisponibilidadeById(_codigoLivro);
+     p.set_disponivel(true);
+    _livros.saveDataModel(p);
 
     std::cout << "Devolucao realizada. " << std::endl;
 

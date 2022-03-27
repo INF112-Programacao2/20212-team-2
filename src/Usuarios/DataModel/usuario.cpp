@@ -37,7 +37,7 @@ string usuario::to_string() {
     return "Nome: " + get_nome() + "\n" +
            "Celular: " + get_celular() + "\n" +
            "Codigo: " + get_codigo() + "\n" +
-           "Usuario ativo? " + status;
+           "Usuario ativo? " + status + "\n";
 }
 
 void usuario::set_atributo(std::string atributo, std::string value){
