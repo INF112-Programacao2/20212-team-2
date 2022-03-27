@@ -10,6 +10,7 @@ using namespace std;
 usuario *cria_usuario();
 DataModelLivro *cria_livro();
 void interface();
+bool isNumber(const std::string& str);
 
 DaoLivro books;
 DaoUsuario users;
@@ -34,9 +35,9 @@ usuario *cria_usuario()
 {
     char resposta;
     std::cout << "Deseja cadastrar Usuario Premium?[S/N]" << std::endl; 
-    std::cin >> resposta;\
+    std::cin >> resposta;
     cin.ignore();
-    UsuarioVip *v = new UsuarioVip;
+    usuariovip *v = new usuariovip;
     usuario *u = new usuario;
     
 
@@ -106,7 +107,8 @@ DataModelLivro *cria_livro()
 }
 
 void interface(){
-    int entrada=0; // Entrada de dados pelo usuario
+    std::string str; // Entrada de dados pelo usuario
+    int entrada;
 
     std::cout << "*** Bem vindo ao sistema Bibliotecario da UFV ***\n";
     std::cout << std::endl;
@@ -118,14 +120,22 @@ void interface(){
         std::cout << "Digite 2 para listar todos os usuarios disponiveis\n";
         std::cout << "Digite 3 para realizar um emprestimo\n";
         std::cout << "Digite 4 para devolver um emprestimo\n";
-        std::cout << "Digite 5 para listar os livros disponiveis de um genero especifico\n";
-        std::cout << "Digite 6 para listar todas as transacoes de livros realizadas\n";
-        std::cout << "Digite 7 para cadastrar um novo livro\n";
-        std::cout << "Digite 8 para cadastrar um novo usuario\n";
-        std::cout << "Digite um valor negativo para sair do sistema\n";
+        std::cout << "Digite 5 para listar todas as transacoes de livros realizadas\n";
+        std::cout << "Digite 6 para cadastrar um novo livro\n";
+        std::cout << "Digite 7 para cadastrar um novo usuario\n";
+        std::cout << "Digite 0 para sair do sistema\n";
 
-        std::cin>> entrada;
+        std::cin>> str;
 
+        // Tratamento Excecoes
+        if(!isNumber(str)){
+            throw std::invalid_argument("O valor digitado deve ser numerico!\n");
+        }
+        entrada = stoi(str);
+        if(entrada>7){
+            throw std::invalid_argument("Nao existe funcao para o valor digitado!\n");
+        }
+     
         if(entrada==1){
             lib.listar_livros_cadastrados();
         }
@@ -139,23 +149,17 @@ void interface(){
             tra.devolucaoEmprestimo();
         }
         if(entrada==5){
-            std::string genero;
-            std::cout << "Qual o genero do livro que deseja listar?";
-            std::cin >> genero;
-            lib.listar_livros_por_genero(genero);
-        }
-        if(entrada==6){
             tra.listarHistorico();
         }
-        if(entrada==7){
+        if(entrada==6){
             cin.ignore();
             lib.registrar_livro(*cria_livro());
         }
-        if(entrada==8){
+        if(entrada==7){
             cin.ignore();
             lib.registrar_usuario(*cria_usuario());
         }
-        if(entrada<0){
+        if(entrada==0){
             std::cout << "Obrigado por utilizar nosso sistema!\n";
             break;
         }
@@ -168,4 +172,13 @@ void interface(){
     std::cout << "Henrique Andrade Lopes (@H3nriqu3L)\n";
     std::cout << "Lucas Mombach (@Lucas-Mombach)\n";
 
+}
+
+// Funcao para verificar se string é numerica
+bool isNumber(const std::string& str){
+    for (char const &c : str){
+        if (std::isdigit(c) == 0) return false;
+    }
+
+    return true;
 }

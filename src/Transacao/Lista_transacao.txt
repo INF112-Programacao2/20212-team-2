@@ -1,2 +1,4 @@
 Data Emprestimo 27/3/2022 | Codigo Livro teste2 | Codigo User 999
 Data Devolucao 27/3/2022 | Codigo Livro teste2 | Codigo User 999
+Data Emprestimo 27/3/2022 | Codigo Livro 999 | Codigo User 001
+Data Devolucao 27/3/2022 | Codigo Livro 999 | Codigo User 001
