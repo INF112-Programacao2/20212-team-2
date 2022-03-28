@@ -21,3 +21,11 @@
 - [x] Usuário
 - [ ] Transações
 - [ ] Histórico de Transações
+
+### Como compilar o programa
+    Para compilar e executar o programa é necessário estar na pasta "20212-team-2/src" e utilizar o codigo abaixo no terminal:
+
+    g++ main.cpp Biblioteca/biblioteca.cpp Livro/DataModel/livro.cpp Transacao/transacao.cpp Usuarios/DataModel/usuario.cpp UsuarioVip/usuariovip.cpp Livro/daoLivro.cpp Usuarios/daoUsuario.cpp
+
+    
+    Durante a execuçao do programa, instruçoes serao dadas para a execuçao correta.
