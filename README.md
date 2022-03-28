@@ -1,10 +1,12 @@
-## Trabalho Final da Disciplina de Programação Orientada a Objetos
+## Trabalho Final da Disciplina INF 112 - Programação II da UFV
+
+### Professor da Disciplina
+- Julio Soares Reis (@juliosoaresreis)
 
 ### Grupo 02
 - Caio Gomes Braga (@caiobraga)
 - Gabriel Moraes Ribeiro (@GabrielMoraesRibeiro)
 - Henrique Andrade Lopes (@H3nriqu3L)
-- Julio Soares Reis (@juliosoaresreis)
 - Lucas Mombach (@Lucas-Mombach)
 
 ### User Stories
