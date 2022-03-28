@@ -1,5 +1,4 @@
 #include <iostream>
-using namespace std;
 
 #ifndef USUARIO_HEADER
 #define USUARIO_HEADER
@@ -7,28 +6,28 @@ using namespace std;
 class usuario {
     protected:
         // ATRIBUTOS
-        string nome;
-        string celular;
-        string codigoUser;
+        std::string nome;
+        std::string celular;
+        std::string codigoUser;
         bool usuario_ativo;
     
     public:
 
         // MÉTODOS DE ACESSO
-        string get_nome();
-        string get_celular();
-        string get_codigo();
+        std::string get_nome();
+        std::string get_celular();
+        std::string get_codigo();
         bool is_usuario_ativo();
         void set_atributo(std::string atributo, std::string value);
 
         // MÉTODOS DE MODIFICAÇÃO
-        void set_nome(string);
-        void set_celular(string);
-        void set_codigo(string);
+        void set_nome(std::string);
+        void set_celular(std::string);
+        void set_codigo(std::string);
         void set_usuario_ativo(bool);     
 
         // TO_STRING
-        string to_string();
+        std::string to_string();
 
         //  
         virtual double desconto_multa(double &multa );

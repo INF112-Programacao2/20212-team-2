@@ -16,16 +16,16 @@
 #include <stdlib.h>
 #include <dirent.h>
 
-using namespace std;
+
 
 DaoUsuario::DaoUsuario()
 {
 }
 
-map<std::string, usuario> DaoUsuario::getDataModels()
+std::map<std::string, usuario> DaoUsuario::getDataModels()
 {
     //implementar busca do banco de dados
-    map<string, usuario> Usuarios;
+    std::map<std::string, usuario> Usuarios;
 
     DIR *dir;
     struct dirent *lsdir;
@@ -37,7 +37,7 @@ map<std::string, usuario> DaoUsuario::getDataModels()
     {
         //printf("%s\n", lsdir->d_name);
         usuario u;
-        vector<usuario> v;
+        std::vector<usuario> v;
         u = this->getDataModelById(lsdir->d_name);
 
         if (u.get_codigo() != "")
@@ -62,19 +62,19 @@ usuario DaoUsuario::getDataModelById(std::string registro)
     char *result;
     int i;
 
-    string filename("../bancoLocalDeDados/Usuarios/" + registro + "/output.txt");
+    std::string filename("../bancoLocalDeDados/Usuarios/" + registro + "/output.txt");
     const char *filename2 = filename.c_str();
 
-    string linha;
+    std::string linha;
     //ifstream – abre o arquivo apenas para leitura
-    ifstream arq_in(filename2);
+    std::ifstream arq_in(filename2);
     if (arq_in.is_open())
     {
         //eof() - retorna true ao atingir o fim do arquivo
         while (!arq_in.eof())
         {
             getline(arq_in, linha);
-            //cout << linha << endl;
+            //std::cout << linha << std::endl;
 
             if (linha != "{" && linha != "}" && linha.find(" ") > 0 && linha.find(" ") < linha.length())
             {
@@ -97,10 +97,10 @@ bool DaoUsuario::saveDataModel(usuario newuser)
 {
     //criação de arquivo
     struct stat st = {0};
-    string filename("../bancoLocalDeDados/Usuarios/" + newuser.get_codigo());
+    std::string filename("../bancoLocalDeDados/Usuarios/" + newuser.get_codigo());
     const char *filename2 = filename.c_str();
 
-    string cod("mkdir -p " + filename);
+    std::string cod("mkdir -p " + filename);
     const char *code2 = cod.c_str();
 
     if (stat(filename2, &st) == -1)
@@ -114,18 +114,18 @@ bool DaoUsuario::saveDataModel(usuario newuser)
         }
         else
         {
-            cout << "Arquivo criado com sucesso" << endl;
+            std::cout << "Arquivo criado com sucesso" << std::endl;
         }
     }
 
     //salvando o dado
 
-    string text("{  \n");
+    std::string text("{  \n");
     //construindo o texto que sera salvo
     text = text + newuser.to_string();
     text = text + "} \n";
-    string filenameFinal(filename + "/output.txt");
-    fstream outfile;
+    std::string filenameFinal(filename + "/output.txt");
+    std::fstream outfile;
 
     const char *filenameFinal2 = filenameFinal.c_str();
 
@@ -134,13 +134,13 @@ bool DaoUsuario::saveDataModel(usuario newuser)
     outfile.open(filenameFinal, std::ios_base::app);
     if (!outfile.is_open())
     {
-        cerr << "failed to open " << filenameFinal << '\n';
+        std::cerr << "failed to open " << filenameFinal << '\n';
         return false;
     }
     else
     {
         outfile.write(text.data(), text.size());
-        cerr << "Done Writing!" << endl;
+        std::cerr << "Done Writing!" << std::endl;
         return true;
     }
 }

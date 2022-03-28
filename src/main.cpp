@@ -3,7 +3,7 @@
 #include "Transacao/transacao.hpp"
 #include <iostream>
 #include <stdexcept>
-using namespace std;
+
 
 #define CHAR_MAX 200
 
@@ -36,7 +36,7 @@ usuario *cria_usuario()
     char resposta;
     std::cout << "Deseja cadastrar Usuario Premium?[S/N]" << std::endl; 
     std::cin >> resposta;
-    cin.ignore();
+    std::cin.ignore();
     usuariovip *v = new usuariovip;
     usuario *u = new usuario;
     
@@ -45,14 +45,14 @@ usuario *cria_usuario()
     char celular[CHAR_MAX];
     char codigo[CHAR_MAX];
 
-    cout << "Insira o nome do usuario: ";
-    cin.getline(nome, CHAR_MAX);
+    std::cout << "Insira o nome do usuario: ";
+    std::cin.getline(nome, CHAR_MAX);
 
-    cout << "Insira o celular do usuario: ";
-    cin.getline(celular, CHAR_MAX);
+    std::cout << "Insira o celular do usuario: ";
+    std::cin.getline(celular, CHAR_MAX);
 
-    cout << "Insira o codigo do usuario (numero de matricula): ";
-    cin.getline(codigo, CHAR_MAX);
+    std::cout << "Insira o codigo do usuario (numero de matricula): ";
+    std::cin.getline(codigo, CHAR_MAX);
 
 
     if (resposta == 'S' || resposta == 's')
@@ -85,17 +85,17 @@ DataModelLivro *cria_livro()
     char genero[CHAR_MAX];
     char registro[CHAR_MAX];
 
-    cout << "Insira o nome do livro: ";
-    cin.getline(nome, CHAR_MAX);
+    std::cout << "Insira o nome do livro: ";
+    std::cin.getline(nome, CHAR_MAX);
 
-    cout << "Insira o(s) autor(es) do livro: ";
-    cin.getline(autor, CHAR_MAX);
+    std::cout << "Insira o(s) autor(es) do livro: ";
+    std::cin.getline(autor, CHAR_MAX);
 
-    cout << "Insira o genero do livro: ";
-    cin.getline(genero, CHAR_MAX);
+    std::cout << "Insira o genero do livro: ";
+    std::cin.getline(genero, CHAR_MAX);
 
-    cout << "Insira o registro do livro: ";
-    cin.getline(registro, CHAR_MAX);
+    std::cout << "Insira o registro do livro: ";
+    std::cin.getline(registro, CHAR_MAX);
 
     l->set_nome(nome);
     l->set_autor(autor);
@@ -153,11 +153,11 @@ void interface(){
             tra.listarHistorico();
         }
         if(entrada==6){
-            cin.ignore();
+            std::cin.ignore();
             lib.registrar_livro(*cria_livro());
         }
         if(entrada==7){
-            cin.ignore();
+            std::cin.ignore();
             lib.registrar_usuario(*cria_usuario());
         }
         if(entrada==0){

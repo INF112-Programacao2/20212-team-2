@@ -6,7 +6,7 @@
 
 #include "../framework/daoBase.hpp"
 
-using namespace std;
+
 #ifndef DAOLIVRO_HEADER
 #define DAOLIVRO_HEADER
 
@@ -15,9 +15,9 @@ class DaoLivro : DaoBase<DataModelLivro>
 public:
     // MÉTODOS DE ACESSO
     DaoLivro();
-    map<std::string, vector<DataModelLivro>> getDataModels();
+    std::map<std::string, std::vector<DataModelLivro>> getDataModels();
     DataModelLivro getDataModelById(std::string registro);
-    vector<DataModelLivro> getLivrosDeMesmoGenero(std::string genero);
+    std::vector<DataModelLivro> getLivrosDeMesmoGenero(std::string genero);
     // MÉTODOS DE MODIFICAÇÃO
     bool saveDataModel(DataModelLivro newLivro);
     bool deleteDataModel(DataModelLivro livroDeletado);

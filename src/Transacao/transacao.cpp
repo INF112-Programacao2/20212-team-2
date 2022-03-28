@@ -125,7 +125,7 @@ Transacao::Transacao(){
 
 void Transacao::salvaEmprestimo(DataModelLivro p, usuario u){
 
-    std::ofstream transacoes("Transacao/Lista_transacao.txt",ios::app);     // Abre arquivo
+    std::ofstream transacoes("Transacao/Lista_transacao.txt",std::ios::app);     // Abre arquivo
     time_t mytime;
     mytime = time(NULL);
     struct tm tm = *localtime(&mytime);
@@ -139,7 +139,7 @@ void Transacao::salvaEmprestimo(DataModelLivro p, usuario u){
 }
 
 void Transacao::salvaDevolucao(DataModelLivro p, usuario u){
-    std::ofstream transacoes("Transacao/Lista_transacao.txt",ios::app);     // Abre arquivo
+    std::ofstream transacoes("Transacao/Lista_transacao.txt",std::ios::app);     // Abre arquivo
     time_t mytime;
     mytime = time(NULL);
     struct tm tm = *localtime(&mytime);
@@ -223,10 +223,10 @@ bool Transacao::saveDataModel()
 {
     //criação de arquivo
     struct stat st = {0};
-    string filename("../bancoLocalDeDados/Transacao/" + get_codigoLivro() + get_codigoUser());
+    std::string filename("../bancoLocalDeDados/Transacao/" + get_codigoLivro() + get_codigoUser());
     const char *filename2 = filename.c_str();
 
-    string cod("mkdir -p " + filename);
+    std::string cod("mkdir -p " + filename);
     const char *code2 = cod.c_str();
 
     if (stat(filename2, &st) == -1)
@@ -240,18 +240,18 @@ bool Transacao::saveDataModel()
         }
         else
         {
-            cout << "Arquivo criado com sucesso" << endl;
+            std::cout << "Arquivo criado com sucesso" << std::endl;
         }
     }
 
     //salvando o dado
 
-    string text("{  \n");
+    std::string text("{  \n");
     //construindo o texto que sera salvo
     text = text + to_string();
     text = text + "} \n";
-    string filenameFinal(filename + "/output.txt");
-    fstream outfile;
+    std::string filenameFinal(filename + "/output.txt");
+    std::fstream outfile;
 
     const char *filenameFinal2 = filenameFinal.c_str();
     
@@ -260,13 +260,13 @@ bool Transacao::saveDataModel()
     outfile.open(filenameFinal, std::ios_base::app);
     if (!outfile.is_open())
     {
-        cerr << "failed to open " << filenameFinal << '\n';
+        std::cerr << "failed to open " << filenameFinal << '\n';
         return false;
     }
     else
     {
         outfile.write(text.data(), text.size());
-        cerr << "Done Writing!" << endl;
+        std::cerr << "Done Writing!" << std::endl;
         return true;
     }
 }
@@ -288,12 +288,12 @@ bool Transacao::getDataModelById(std::string registro)
     char *result;
     int i;
 
-    string filename("../bancoLocalDeDados/Transacao/" + registro + "/output.txt");
+    std::string filename("../bancoLocalDeDados/Transacao/" + registro + "/output.txt");
     const char *filename2 = filename.c_str();
 
-    string linha;
+    std::string linha;
     //ifstream – abre o arquivo apenas para leitura
-    ifstream arq_in(filename2);
+    std::ifstream arq_in(filename2);
     if (arq_in.is_open())
     {
         //eof() - retorna true ao atingir o fim do arquivo

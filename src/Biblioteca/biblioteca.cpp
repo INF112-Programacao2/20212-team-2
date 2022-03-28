@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 #include <iterator>
-using namespace std;
+
 
 bool Biblioteca::registrar_usuario(usuario user)
 {
@@ -20,7 +20,7 @@ void Biblioteca::listar_usuarios_cadastrados()
 
     for (auto &usuario : usuarios)
     {
-        cout << usuario.second.to_string() << endl;
+        std::cout << usuario.second.to_string() << std::endl;
     }
 }
 
@@ -34,27 +34,27 @@ bool Biblioteca::registrar_livro(DataModelLivro book)
 void Biblioteca::listar_livros_cadastrados()
 {
     popular_livros_com_banco_de_dados();
-    cout << endl;
+    std::cout << std::endl;
     for (auto const &lista : livros)
     {
-        cout << "Genero: " << lista.first << "\n"
-             << endl;
+        std::cout << "Genero: " << lista.first << "\n"
+             << std::endl;
         for (auto l : lista.second)
         {
-            cout << l.to_string() << "\n"
-                 << endl;
+            std::cout << l.to_string() << "\n"
+                 << std::endl;
         }
     }
 }
 
-void Biblioteca::listar_livros_por_genero(string genero)
+void Biblioteca::listar_livros_por_genero(std::string genero)
 {
 
-    vector<DataModelLivro> &v = livros[genero];
+    std::vector<DataModelLivro> &v = livros[genero];
     for (DataModelLivro l : v)
     {
-        cout << l.to_string() << "\n"
-             << endl;
+        std::cout << l.to_string() << "\n"
+             << std::endl;
     }
 }
 
@@ -71,12 +71,12 @@ void Biblioteca::popular_usuarios_com_banco_de_dados(){
 }
 
 
-map<string, usuario> Biblioteca::get_usuarios()
+std::map<std::string, usuario> Biblioteca::get_usuarios()
 {
     return this->usuarios;
 }
 
-void Biblioteca::set_usuarios(map<string, usuario> usuarios)
+void Biblioteca::set_usuarios(std::map<std::string, usuario> usuarios)
 {
     this->usuarios = usuarios;
 }
