@@ -1,0 +1,7 @@
+{  
+Nome: Harry Potter
+Autor: J. K. Rowling
+Genero: Fantasia
+Registro: 012
+Disponivel: Sim
+} 

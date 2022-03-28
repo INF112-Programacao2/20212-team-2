@@ -1,0 +1,7 @@
+{  
+Nome: Guerra e Paz
+Autor: Tolstoi
+Genero: Guerra
+Registro: 006
+Disponivel: Sim
+} 

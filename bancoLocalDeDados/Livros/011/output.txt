@@ -1,0 +1,7 @@
+{  
+Nome: Senhor Dos Aneis
+Autor: Tolkien
+Genero: Fantasia
+Registro: 011
+Disponivel: Sim
+} 

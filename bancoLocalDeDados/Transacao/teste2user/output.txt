@@ -1,7 +1,0 @@
-{  
-RegistroLivro: teste2
-RegistroUser: user
-DataEmprestimo: 1648404878
-DataVencimento: 1648419278
-Disponivel: Nao
-} 

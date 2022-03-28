@@ -1,7 +1,0 @@
-{  
-Nome: caioi
-Autor: casdf
-Genero: Aventura
-Registro: 666
-Disponivel: Sim
-} 

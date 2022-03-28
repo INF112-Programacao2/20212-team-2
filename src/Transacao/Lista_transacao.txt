@@ -1,4 +1,6 @@
-Data Emprestimo 27/3/2022 | Codigo Livro teste2 | Codigo User 999
-Data Devolucao 27/3/2022 | Codigo Livro teste2 | Codigo User 999
-Data Emprestimo 27/3/2022 | Codigo Livro 999 | Codigo User 001
-Data Devolucao 27/3/2022 | Codigo Livro 999 | Codigo User 001
+Data Emprestimo: 27/3/2022 | Codigo Livro: 001 | Nome Livro: Crime e Castigo | Codigo User: 100 | Nome User: Henrique
+Data Devolucao 27/3/2022 | Codigo Livro: 001 | Nome Livro: Crime e Castigo | Codigo User: 100 | Nome User: Henrique
+Data Emprestimo: 27/3/2022 | Codigo Livro: 010 | Nome Livro: Lobo da Estepe | Codigo User: 102 | Nome User: Gabriel
+Data Emprestimo: 27/3/2022 | Codigo Livro: 007 | Nome Livro: Codigo Limpo | Codigo User: 104 | Nome User: Julio
+Data Devolucao 27/3/2022 | Codigo Livro: 010 | Nome Livro: Lobo da Estepe | Codigo User: 102 | Nome User: Gabriel
+Data Devolucao 27/3/2022 | Codigo Livro: 007 | Nome Livro: Codigo Limpo | Codigo User: 104 | Nome User: Julio

@@ -1,0 +1,7 @@
+{  
+Nome: As Intermitencias Da Morte
+Autor: Jose Saramago
+Genero: Romance
+Registro: 003
+Disponivel: Sim
+} 

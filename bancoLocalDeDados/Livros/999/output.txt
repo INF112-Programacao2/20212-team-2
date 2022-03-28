@@ -1,7 +1,0 @@
-{  
-Nome: 999
-Autor: 999
-Genero: 999
-Registro: 999
-Disponivel: Sim
-} 

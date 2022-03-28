@@ -1,7 +1,0 @@
-{  
-Nome: aaa
-Autor: bbb
-Genero: ccc
-Registro: 777
-Disponivel: Nao
-} 

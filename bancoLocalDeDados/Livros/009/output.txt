@@ -1,0 +1,7 @@
+{  
+Nome: Os Irmaos Karamazov
+Autor: Dostoievski
+Genero: Crime
+Registro: 009
+Disponivel: Sim
+} 

@@ -1,7 +1,0 @@
-{  
-Nome: 111
-Autor: 111
-Genero: 111
-Registro: 111
-Disponivel: Sim
-} 

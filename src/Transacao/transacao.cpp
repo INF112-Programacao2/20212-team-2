@@ -59,7 +59,7 @@ void Transacao::realizarEmprestimo(){
     std::cout << "Emprestimo realizado! Do livro " << p.get_nome() << " para o usuario " << u.get_nome() << "." << std::endl;
 
     // Escreve informacoes na ListaTransaçao
-    salvaEmprestimo();
+    salvaEmprestimo(p,u);
     saveDataModel();
     
 }
@@ -100,7 +100,7 @@ void Transacao::devolucaoEmprestimo(){
 
     std::cout << "Devolucao realizada. " << std::endl;
     set_disponivel(false);
-    salvaDevolucao();
+    salvaDevolucao(p,u);
     saveDataModel();
 }
 
@@ -123,27 +123,31 @@ Transacao::Transacao(){
     
 }
 
-void Transacao::salvaEmprestimo(){
+void Transacao::salvaEmprestimo(DataModelLivro p, usuario u){
 
     std::ofstream transacoes("Transacao/Lista_transacao.txt",ios::app);     // Abre arquivo
     time_t mytime;
     mytime = time(NULL);
     struct tm tm = *localtime(&mytime);
-    transacoes <<"Data Emprestimo " <<  tm.tm_mday <<"/" <<tm.tm_mon + 1 <<"/" << tm.tm_year + 1900 << " | ";
-    transacoes <<"Codigo Livro " << _codigoLivro << " | ";
-    transacoes <<"Codigo User " << _codigoUser << "\n";
+    transacoes <<"Data Emprestimo: " <<  tm.tm_mday <<"/" <<tm.tm_mon + 1 <<"/" << tm.tm_year + 1900 << " | ";
+    transacoes <<"Codigo Livro: " << _codigoLivro << " | ";
+    transacoes << "Nome Livro: " << p.get_nome() << " | ";
+    transacoes <<"Codigo User: " << _codigoUser << " | ";
+    transacoes << "Nome User: " << u.get_nome() << "\n";
     transacoes.close();
     return;
 }
 
-void Transacao::salvaDevolucao(){
+void Transacao::salvaDevolucao(DataModelLivro p, usuario u){
     std::ofstream transacoes("Transacao/Lista_transacao.txt",ios::app);     // Abre arquivo
     time_t mytime;
     mytime = time(NULL);
     struct tm tm = *localtime(&mytime);
     transacoes <<"Data Devolucao " << tm.tm_mday <<"/"<< tm.tm_mon + 1 << "/" << tm.tm_year + 1900 << " | ";
-    transacoes <<"Codigo Livro " << _codigoLivro << " | ";
-    transacoes <<"Codigo User " << _codigoUser;
+    transacoes <<"Codigo Livro: " << _codigoLivro << " | ";
+    transacoes << "Nome Livro: " << p.get_nome() << " | ";
+    transacoes <<"Codigo User: " << _codigoUser << " | ";
+    transacoes << "Nome User: " << u.get_nome();
 
     if(_dataRetorno>_dataVencimento)
         transacoes << " | Houve Atraso no Emprestimo";

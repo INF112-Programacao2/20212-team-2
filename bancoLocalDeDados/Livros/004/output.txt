@@ -1,0 +1,7 @@
+{  
+Nome: Volta ao Mundo em 80 dias
+Autor: Julio Verne
+Genero: Aventura
+Registro: 004
+Disponivel: Sim
+} 

@@ -1,0 +1,7 @@
+{  
+Nome: O Retrado De Dorian Gray
+Autor: Oscar Wilde
+Genero: Terror
+Registro: 005
+Disponivel: Sim
+} 

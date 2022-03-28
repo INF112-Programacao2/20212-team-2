@@ -1,0 +1,7 @@
+{  
+Nome: Cem Anos de Solidao
+Autor: Gabriel Garcia Marquez
+Genero: Fantasia
+Registro: 008
+Disponivel: Sim
+} 

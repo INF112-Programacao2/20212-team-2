@@ -1,0 +1,7 @@
+{  
+Nome: Crime e Castigo
+Autor: Dostoievski
+Genero: Crime
+Registro: 001
+Disponivel: Sim
+} 

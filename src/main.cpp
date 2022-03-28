@@ -116,6 +116,7 @@ void interface(){
 
     while(true){
         std::cout<<std::endl;
+        std::cout << "Digite 0 para sair do sistema\n";
         std::cout << "Digite 1 para listar todos os livros disponiveis\n";
         std::cout << "Digite 2 para listar todos os usuarios disponiveis\n";
         std::cout << "Digite 3 para realizar um emprestimo\n";
@@ -123,7 +124,7 @@ void interface(){
         std::cout << "Digite 5 para listar todas as transacoes de livros realizadas\n";
         std::cout << "Digite 6 para cadastrar um novo livro\n";
         std::cout << "Digite 7 para cadastrar um novo usuario\n";
-        std::cout << "Digite 0 para sair do sistema\n";
+        
 
         std::cin>> str;
 

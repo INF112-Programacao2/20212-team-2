@@ -1,6 +1,0 @@
-{  
-Nome: Henrique
-Celular: 999
-Codigo: 999
-Usuario ativo? Sim
-} 

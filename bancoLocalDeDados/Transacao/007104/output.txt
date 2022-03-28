@@ -1,0 +1,7 @@
+{  
+RegistroLivro: 007
+RegistroUser: 104
+DataEmprestimo: 1648425245
+DataVencimento: 1648428845
+Disponivel: Nao
+} 

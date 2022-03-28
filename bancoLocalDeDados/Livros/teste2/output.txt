@@ -1,7 +1,0 @@
-{  
-Nome: teste2
-Autor: teste2
-Genero: teste2
-Registro: teste2
-Disponivel: Sim
-} 

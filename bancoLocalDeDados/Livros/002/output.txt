@@ -1,0 +1,7 @@
+{  
+Nome: O alquimista
+Autor: Paulo Coelho
+Genero: Fabula
+Registro: 002
+Disponivel: Sim
+} 

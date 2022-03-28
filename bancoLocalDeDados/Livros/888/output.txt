@@ -1,7 +1,0 @@
-{  
-Nome: teste
-Autor: aasdf
-Genero: asdf
-Registro: 888
-Disponivel: Sim
-} 

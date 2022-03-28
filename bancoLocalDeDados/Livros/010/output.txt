@@ -1,0 +1,7 @@
+{  
+Nome: Lobo da Estepe
+Autor: Hermann Hesse
+Genero: Romance
+Registro: 010
+Disponivel: Sim
+} 

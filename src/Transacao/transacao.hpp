@@ -36,8 +36,8 @@ class Transacao {
         
         // METODOS PRIVADOS
         long long int getData();
-        void salvaEmprestimo(); // Escreve informacoes emprestimo no .txt
-        void salvaDevolucao(); // Escreve informacoes da devolucao do emprestimo no .txt
+        void salvaEmprestimo(DataModelLivro,usuario); // Escreve informacoes emprestimo no .txt
+        void salvaDevolucao(DataModelLivro,usuario); // Escreve informacoes da devolucao do emprestimo no .txt
         bool saveDataModel();
         bool apagarDadosDoArquivo(const char *path);
         bool getDataModelById(std::string registro);
