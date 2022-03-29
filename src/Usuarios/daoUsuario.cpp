@@ -88,7 +88,7 @@ usuario DaoUsuario::getDataModelById(std::string registro)
     }
     else
     {
-        throw std::invalid_argument("Arquivo nao foi aberto ou nao existe!\n");
+        //throw std::invalid_argument("Arquivo nao foi aberto ou nao existe!\n");
     }
     arq_in.close();
     return user;

@@ -1,0 +1,7 @@
+{  
+Nome: Tres Porquinhos
+Autor: C&A
+Genero: Infantil
+Registro: 014
+Disponivel: Sim
+} 

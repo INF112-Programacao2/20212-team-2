@@ -1,0 +1,6 @@
+{  
+Nome: Julio
+Celular: 9784324545
+Codigo: 107
+Usuario ativo? Sim
+} 
