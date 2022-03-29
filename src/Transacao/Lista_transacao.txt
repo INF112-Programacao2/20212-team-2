@@ -4,3 +4,5 @@ Data Emprestimo: 27/3/2022 | Codigo Livro: 010 | Nome Livro: Lobo da Estepe | Co
 Data Emprestimo: 27/3/2022 | Codigo Livro: 007 | Nome Livro: Codigo Limpo | Codigo User: 104 | Nome User: Julio
 Data Devolucao 27/3/2022 | Codigo Livro: 010 | Nome Livro: Lobo da Estepe | Codigo User: 102 | Nome User: Gabriel
 Data Devolucao 27/3/2022 | Codigo Livro: 007 | Nome Livro: Codigo Limpo | Codigo User: 104 | Nome User: Julio
+Data Emprestimo: 29/3/2022 | Codigo Livro: 014 | Nome Livro: Tres Porquinhos | Codigo User: 107 | Nome User: Julio
+Data Devolucao 29/3/2022 | Codigo Livro: 014 | Nome Livro: Tres Porquinhos | Codigo User: 107 | Nome User: Julio

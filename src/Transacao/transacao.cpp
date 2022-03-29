@@ -43,10 +43,6 @@ void Transacao::realizarEmprestimo(){
         return;
     }
 
-    if(!(u.is_usuario_ativo())){
-        std::cout<< "O usuario nao esta disponivel no momento.\n";
-        return;
-    }
 
     // Prazo para devolucao
     int prazo; 
